@@ -121,7 +121,7 @@ public class Controller {
             images.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterGif))));
             createElements(key);
         }
-        status.setText("Images loaded successfully: "+String.valueOf(images.size()));
+        status.setText("Images loaded successfully: "+images.size());
     }
 
     @FXML
@@ -135,11 +135,6 @@ public class Controller {
         //projectImageKeeper.getChildren().clear();
         switch (key.value) {
             case 0:
-                do {
-                    projectImageKeeper.getChildren().add(createPage(count, key));
-                    count++;
-                } while (images.size() > count);
-                break;
             case 1:
                 do {
                     projectImageKeeper.getChildren().add(createPage(count, key));
@@ -182,12 +177,8 @@ public class Controller {
         pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7);");
         pageBox.setAlignment(Pos.CENTER);
         imageView = null;
-        pageBox.setOnMouseEntered(mouseEvent -> {
-            pageBox.setStyle("-fx-effect: glow");
-        });
-        pageBox.setOnMouseExited(mouseEvent -> {
-            pageBox.setStyle("-fx-border-style:none");
-        });
+        pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-effect: glow"));
+        pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-style:none"));
         pageBox.setOnMouseClicked(mouseEvent -> {
 
             bigImageView.setImage(new Image(file.toURI().toString()));
