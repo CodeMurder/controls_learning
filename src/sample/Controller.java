@@ -121,7 +121,7 @@ public class Controller {
             images.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterGif))));
             createElements(key);
         }
-        status.setText("Images loaded successfully: "+images.size());
+        status.setText("Images loaded successfully: " + images.size());
     }
 
     @FXML
@@ -205,7 +205,7 @@ public class Controller {
             imageView.setFitHeight(ELEMENT_SIZE);
             imageView.setPreserveRatio(true);
             imageView.setSmooth(true);
-          //  imageView.setCache(true);
+            imageView.setCache(true);
             imageView.setCursor(Cursor.HAND);
         } catch (IOException ex) {
 
