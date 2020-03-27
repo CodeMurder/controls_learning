@@ -181,7 +181,7 @@ public class Controller {
         HBox pageBox = new HBox();
         pageBox.getChildren().add(imageView);
         pageBox.setStyle("-fx-border-color: #292929;");
-        pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7);");
+        pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7)");
         pageBox.setAlignment(Pos.CENTER);
         imageView = null;
         pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-effect: glow"));
@@ -196,7 +196,7 @@ public class Controller {
                 bigImageView.setFitWidth(bigImagePane.getWidth());
             }
 
-
+            status.setText("Selected image: ");
         });
         return pageBox;
     }
