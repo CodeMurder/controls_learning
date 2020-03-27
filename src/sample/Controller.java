@@ -43,7 +43,7 @@ public class Controller {
 
     private static final double ELEMENT_SIZE = 90;
 
-    File[] filesJpg; // file array to store read images info
+    // file array to store read images info
     ArrayList<File> images = new ArrayList<>();
     Key key = new Key(0);
 
