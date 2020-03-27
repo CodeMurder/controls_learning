@@ -43,9 +43,16 @@ public class Controller {
 
     private static final double ELEMENT_SIZE = 90;
 
-    File[] filesJpg; // file array to store read images info
+    // file array to store read images info
     ArrayList<File> images = new ArrayList<>();
     Key key = new Key(0);
+
+    @FXML
+    private ScrollPane queueKeeperStage;
+
+    @FXML
+    private TilePane projectImageQueue;
+
     @FXML
     private MenuItem OpenFiles_btn;
 
@@ -128,7 +135,7 @@ public class Controller {
     void initialize() {
         imageKeeperStage.setContent(projectImageKeeper);
         imageKeeperStage.fitToHeightProperty();
-        bigImageView.setStyle("");
+        imageKeeperStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
     }
 
     private void createElements(Key key) {
@@ -174,7 +181,7 @@ public class Controller {
         HBox pageBox = new HBox();
         pageBox.getChildren().add(imageView);
         pageBox.setStyle("-fx-border-color: #292929;");
-        pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7);");
+        pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7)");
         pageBox.setAlignment(Pos.CENTER);
         imageView = null;
         pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-effect: glow"));
@@ -189,7 +196,7 @@ public class Controller {
                 bigImageView.setFitWidth(bigImagePane.getWidth());
             }
 
-
+            status.setText("Selected image: ");
         });
         return pageBox;
     }
