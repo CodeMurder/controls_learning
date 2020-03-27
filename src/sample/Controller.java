@@ -46,6 +46,13 @@ public class Controller {
     File[] filesJpg; // file array to store read images info
     ArrayList<File> images = new ArrayList<>();
     Key key = new Key(0);
+
+    @FXML
+    private ScrollPane queueKeeperStage;
+
+    @FXML
+    private TilePane projectImageQueue;
+
     @FXML
     private MenuItem OpenFiles_btn;
 
@@ -128,7 +135,7 @@ public class Controller {
     void initialize() {
         imageKeeperStage.setContent(projectImageKeeper);
         imageKeeperStage.fitToHeightProperty();
-        bigImageView.setStyle("");
+        imageKeeperStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
     }
 
     private void createElements(Key key) {
