@@ -184,7 +184,7 @@ public class Controller {
         pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7)");
         pageBox.setAlignment(Pos.CENTER);
         imageView = null;
-        pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-effect: glow"));
+       // pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-effect: glow"));
         pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-style:none"));
         pageBox.setOnMouseClicked(mouseEvent -> {
 
