@@ -45,7 +45,7 @@ public class Controller {
 
     // file array to store read images info
     ArrayList<File> images = new ArrayList<>();
-    Key key = new Key(0);
+
 
     @FXML
     private ScrollPane queueKeeperStage;
@@ -68,15 +68,10 @@ public class Controller {
     @FXML
     private TilePane projectImageKeeper;
 
-    @FXML
-    private ScrollPane imageKeeperStage;
 
     @FXML
-    void handleDragOver(DragEvent event) {
-        if (event.getDragboard().hasFiles()) {
-            event.acceptTransferModes(TransferMode.ANY);
-        }
-    }
+    private ScrollPane imageStackStage;
+
 
     ////
     @FXML
@@ -87,9 +82,10 @@ public class Controller {
     }
 
     @FXML
-    void handleDragDroppedTilePane(DragEvent event) {
+    void handleDragDroppedTilePane(DragEvent event) {                       //add method
         images.addAll(event.getDragboard().getFiles());
-        createElements(key);
+        imageLoader();
+        status.setText("Images loaded successfully: " + images.size());
     }
 
     ///
@@ -102,17 +98,17 @@ public class Controller {
 
     @FXML
     void openMultiFiles_menuItem(ActionEvent event) {
-        Stage parent = (Stage) imageKeeperStage.getScene().getWindow();
+        Stage parent = (Stage) imageStackStage.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif"));
         images.addAll(fileChooser.showOpenMultipleDialog(parent));
-        key.value = 1;
-        createElements(key);
+        imageLoader();
+        status.setText("Images loaded successfully: " + images.size());
     }
 
     @FXML
     void openFiles_menuItem(ActionEvent event) {
-        Stage parent = (Stage) imageKeeperStage.getScene().getWindow();
+        Stage parent = (Stage) imageStackStage.getScene().getWindow();
 
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -126,54 +122,23 @@ public class Controller {
             images.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterJpg))));
             images.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterPng))));
             images.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterGif))));
-            createElements(key);
+            imageLoader();
         }
         status.setText("Images loaded successfully: " + images.size());
     }
 
     @FXML
     void initialize() {
-        imageKeeperStage.setContent(projectImageKeeper);
-        imageKeeperStage.fitToHeightProperty();
-        imageKeeperStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-    }
-
-    private void createElements(Key key) {
-        //projectImageKeeper.getChildren().clear();
-        switch (key.value) {
-            case 0:
-            case 1:
-                do {
-                    projectImageKeeper.getChildren().add(createPage(count, key));
-                    count++;
-                } while (images.size() > count);
-                break;
-            default:
-                break;
-
-        }
-
-
+        imageStackStage.setContent(projectImageKeeper);
+        imageStackStage.fitToHeightProperty();
+        imageStackStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
     }
 
 
-    public HBox createPage(int index, Key key) {
+    public HBox createPage(int index) {
         ImageView imageView = new ImageView();
-
         File file = images.get(index);
-        switch (key.value) {
-            case 0:
-                setImage(imageView, file);
-                break;
-            case 1:
-                setImage(imageView, file);
-                break;
-            default:
-                break;
-
-        }
-
-
+        setImage(imageView, file);
         return getHBox(imageView, file);
     }
 
@@ -184,8 +149,9 @@ public class Controller {
         pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7)");
         pageBox.setAlignment(Pos.CENTER);
         imageView = null;
-       // pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-effect: glow"));
-        pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-style:none"));
+        pageBox.setStyle("-fx-border-style:white");
+        pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-border-style:blue"));
+        pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-style:white"));
         pageBox.setOnMouseClicked(mouseEvent -> {
 
             bigImageView.setImage(new Image(file.toURI().toString()));
@@ -219,5 +185,13 @@ public class Controller {
 
         }
     }
+
+    private void imageLoader() {
+        do {
+            projectImageKeeper.getChildren().add(createPage(count));
+            count++;
+        } while (images.size() > count);
+    }
+
 
 }
