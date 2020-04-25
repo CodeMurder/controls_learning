@@ -18,21 +18,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.StatusBar;
 
-import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
+import java.util.Vector;
 
 public class Controller {
 
@@ -44,7 +39,7 @@ public class Controller {
     private static final double ELEMENT_SIZE = 90;
 
     // file array to store read images info
-    ArrayList<File> images = new ArrayList<>();
+    Vector<File> images = new Vector<>();
 
 
     @FXML
@@ -148,6 +143,7 @@ public class Controller {
         pageBox.setStyle("-fx-border-color: #292929;");
         pageBox.setStyle("-fx-background-color: rgba(0, 0, 0,0.7)");
         pageBox.setAlignment(Pos.CENTER);
+
         imageView = null;
         pageBox.setStyle("-fx-border-style:white");
         pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-border-style:blue"));
@@ -162,7 +158,7 @@ public class Controller {
                 bigImageView.setFitWidth(bigImagePane.getWidth());
             }
 
-            status.setText("Selected image: ");
+            status.setText("Selected image: "+file.getName());
         });
         return pageBox;
     }
@@ -171,8 +167,6 @@ public class Controller {
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = new Image(file.toURI().toString());
-
-
             imageView.setImage(image);
             imageView.setFitWidth(ELEMENT_SIZE);
             imageView.setFitHeight(ELEMENT_SIZE);
@@ -191,6 +185,7 @@ public class Controller {
             projectImageKeeper.getChildren().add(createPage(count));
             count++;
         } while (images.size() > count);
+
     }
 
 

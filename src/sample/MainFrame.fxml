@@ -7,10 +7,13 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import org.controlsfx.control.StatusBar?>
@@ -44,7 +47,7 @@
          <children>
             <SplitPane dividerPositions="0.30495689655172414" prefHeight="608.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="350.0" SplitPane.resizableWithParent="false">
+                <AnchorPane maxWidth="523.0" minWidth="-Infinity" prefHeight="608.0" prefWidth="325.0" SplitPane.resizableWithParent="false">
                      <children>
                         <ScrollPane fx:id="imageStackStage" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="581.0" prefWidth="350.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
@@ -87,6 +90,24 @@
                               </AnchorPane>
                             <AnchorPane maxHeight="250.0" minHeight="-Infinity" prefHeight="182.0" prefWidth="638.0" SplitPane.resizableWithParent="false">
                                  <children>
+                                    <GridPane prefHeight="35.0" prefWidth="571.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <Button mnemonicParsing="false" text="⬅" />
+                                                <Button contentDisplay="TOP" mnemonicParsing="false" text="➡" />
+                                             </children>
+                                          </FlowPane>
+                                       </children>
+                                    </GridPane>
                                     <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" layoutY="36.0" prefHeight="146.0" prefWidth="571.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="36.0">
                                        <content>
                                           <TilePane fx:id="projectImageQueue" hgap="9.0" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="3" prefHeight="608.0" prefRows="0" prefWidth="306.0" style="-fx-background-color: #232329;" vgap="9.0">
@@ -96,11 +117,6 @@
                                           </TilePane>
                                        </content>
                                     </ScrollPane>
-                                    <ToolBar maxHeight="-Infinity" prefHeight="20.0" prefWidth="601.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <items>
-                                        <Button mnemonicParsing="false" text="Button" />
-                                      </items>
-                                    </ToolBar>
                                  </children></AnchorPane>
                           </items>
                         </SplitPane>
