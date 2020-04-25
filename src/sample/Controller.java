@@ -5,6 +5,7 @@ import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -36,38 +37,38 @@ public class Controller {
     int count = 0;
 
 
-    private static final double ELEMENT_SIZE = 90;
+    public static final double ELEMENT_SIZE = 90;
 
     // file array to store read images info
     Vector<File> images = new Vector<>();
 
 
     @FXML
-    private ScrollPane queueKeeperStage;
+    public ScrollPane queueKeeperStage;
 
     @FXML
-    private TilePane projectImageQueue;
+    public TilePane projectImageQueue;
 
     @FXML
-    private MenuItem OpenFiles_btn;
+    public MenuItem OpenFiles_btn;
 
     @FXML
-    private MenuItem multiOpen_MenuItem;
+    public MenuItem multiOpen_MenuItem;
 
     @FXML
-    private StatusBar status;
+    public StatusBar status;
 
     @FXML
-    private StackPane bigImagePane;
+    public StackPane bigImagePane;
 
     @FXML
-    private TilePane projectImageKeeper;
+    public TilePane projectImageKeeper;
 
 
     @FXML
-    private ScrollPane imageStackStage;
+    public ScrollPane imageStackStage;
 
-
+   // ContextMenu
     ////
     @FXML
     void handleDragOverTilePane(DragEvent event) {
@@ -137,7 +138,7 @@ public class Controller {
         return getHBox(imageView, file);
     }
 
-    private HBox getHBox(ImageView imageView, File file) {
+    public HBox getHBox(ImageView imageView, File file) {
         HBox pageBox = new HBox();
         pageBox.getChildren().add(imageView);
         pageBox.setStyle("-fx-border-color: #292929;");
@@ -163,7 +164,7 @@ public class Controller {
         return pageBox;
     }
 
-    private void setImage(ImageView imageView, File file) {
+    public void setImage(ImageView imageView, File file) {
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             Image image = new Image(file.toURI().toString());
@@ -180,7 +181,7 @@ public class Controller {
         }
     }
 
-    private void imageLoader() {
+    public void imageLoader() {
         do {
             projectImageKeeper.getChildren().add(createPage(count));
             count++;
