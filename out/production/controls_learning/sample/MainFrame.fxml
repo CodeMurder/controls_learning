@@ -2,11 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -20,36 +22,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="640.0" minWidth="930.0" prefHeight="640.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <MenuBar layoutY="2.0" prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem" text="Open..." />
-                  <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem" text="Open multi.." />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </MenuBar>
       <AnchorPane prefHeight="640.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
          <children>
             <SplitPane dividerPositions="0.30495689655172414" prefHeight="608.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
                 <AnchorPane maxWidth="523.0" minWidth="-Infinity" prefHeight="608.0" prefWidth="325.0" SplitPane.resizableWithParent="false">
                      <children>
-                        <ScrollPane fx:id="imageStackStage" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="581.0" prefWidth="350.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="imageStackStage" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="581.0" prefWidth="350.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
                                <HBox fx:id="pageBox" />
                               <TilePane fx:id="projectImageKeeper" hgap="9.0" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="0" prefHeight="608.0" prefRows="0" prefWidth="306.0" style="-fx-background-color: #232329;" vgap="9.0">
@@ -58,14 +37,21 @@
                                  </padding>
                               </TilePane>
                            </content>
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Import..." />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
                         </ScrollPane>
                         <StatusBar fx:id="status" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="11.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <SplitPane dividerPositions="0.6920529801324503" orientation="VERTICAL" prefHeight="606.0" prefWidth="647.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.5823957643944407, 0.6634679020516214" orientation="VERTICAL" prefHeight="606.0" prefWidth="647.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="571.0" SplitPane.resizableWithParent="false">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="296.0" prefWidth="571.0" SplitPane.resizableWithParent="false">
                                  <children>
                                     <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
@@ -88,9 +74,9 @@
                                     <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                                  </padding>
                               </AnchorPane>
-                            <AnchorPane maxHeight="250.0" minHeight="-Infinity" prefHeight="182.0" prefWidth="638.0" SplitPane.resizableWithParent="false">
+                              <AnchorPane prefWidth="595.0" SplitPane.resizableWithParent="false">
                                  <children>
-                                    <GridPane prefHeight="35.0" prefWidth="571.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <GridPane alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -106,9 +92,29 @@
                                                 <Button contentDisplay="TOP" mnemonicParsing="false" text="➡" />
                                              </children>
                                           </FlowPane>
+                                          <FlowPane alignment="CENTER_RIGHT" hgap="5.0" layoutX="209.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                             <children>
+                                                <Button mnemonicParsing="false" text="⬅" />
+                                                <Button contentDisplay="TOP" mnemonicParsing="false" text="🖹">
+                                                   <tooltip>
+                                                      <Tooltip text="Edit text..." />
+                                                   </tooltip>
+                                                </Button>
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <GridPane.margin>
+                                                <Insets right="10.0" />
+                                             </GridPane.margin>
+                                          </FlowPane>
                                        </children>
                                     </GridPane>
-                                    <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" layoutY="36.0" prefHeight="148.0" prefWidth="595.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane maxHeight="300.0" minHeight="-Infinity" prefHeight="200.0" prefWidth="595.0" SplitPane.resizableWithParent="false">
+                                 <children>
+                                    <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" layoutY="36.0" prefHeight="148.0" prefWidth="595.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <content>
                                           <TilePane fx:id="projectImageQueue" hgap="9.0" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="3" prefHeight="608.0" prefRows="0" prefWidth="306.0" style="-fx-background-color: #232329;" vgap="9.0">
                                              <padding>
@@ -126,5 +132,31 @@
             </SplitPane>
          </children>
       </AnchorPane>
+      <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem" text="Open..." />
+                  <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem" text="Open multi.." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="2.0" />
+         </padding>
+      </MenuBar>
    </children>
 </AnchorPane>

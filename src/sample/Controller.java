@@ -5,9 +5,8 @@ import javafx.event.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,6 +16,7 @@ import javafx.scene.layout.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.StatusBar;
 
 import javax.imageio.ImageIO;
@@ -41,6 +41,7 @@ public class Controller {
 
     // file array to store read images info
     Vector<File> images = new Vector<>();
+
 
 
     @FXML
@@ -161,6 +162,7 @@ public class Controller {
 
             status.setText("Selected image: "+file.getName());
         });
+
         return pageBox;
     }
 
