@@ -5,7 +5,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.concurrent.ExecutionException;
 
 public class ResourceManager {
     public static void save(Serializable data, String fileName) throws Exception {

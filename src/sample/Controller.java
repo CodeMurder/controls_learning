@@ -1,34 +1,36 @@
 package sample;
 
 
-import javafx.event.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
-
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.controlsfx.control.InfoOverlay;
 import org.controlsfx.control.StatusBar;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Vector;
+
+import static sample.ExpLoader.load;
+import static sample.ExpSaver.save;
+
 
 public class Controller {
 
@@ -41,7 +43,6 @@ public class Controller {
 
     // file array to store read images info
     Vector<File> images = new Vector<>();
-
 
 
     @FXML
@@ -69,7 +70,7 @@ public class Controller {
     @FXML
     public ScrollPane imageStackStage;
 
-   // ContextMenu
+    // ContextMenu
     ////
     @FXML
     void handleDragOverTilePane(DragEvent event) {
@@ -147,22 +148,20 @@ public class Controller {
         pageBox.setAlignment(Pos.CENTER);
 
         imageView = null;
-        pageBox.setStyle("-fx-border-style:white");
-        pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-border-style:blue"));
-        pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-style:white"));
+        pageBox.setStyle("-fx-border-color:white");
+        pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-border-color:blue"));
+        pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-color:white"));
         pageBox.setOnMouseClicked(mouseEvent -> {
 
             bigImageView.setImage(new Image(file.toURI().toString()));
             bigImageView.setSmooth(false);
-            bigImageView.setStyle(String.valueOf(GroupLayout.Alignment.CENTER));
             bigImageView.setFitHeight(bigImagePane.getHeight());
             if (bigImageView.getFitWidth() > bigImagePane.getWidth()) {
                 bigImageView.setFitWidth(bigImagePane.getWidth());
             }
 
-            status.setText("Selected image: "+file.getName());
+            status.setText("Selected image: " + file.getName());
         });
-
         return pageBox;
     }
 
@@ -191,5 +190,50 @@ public class Controller {
 
     }
 
+    public void imageLoader(Vector<File> loadedImages) {
+        projectImageKeeper.getChildren().clear();
+        count = 0;
+        do {
+            projectImageKeeper.getChildren().add(createPage(count));
+            count++;
+        } while (loadedImages.size() > count);
+        status.setText("Images loaded successfully: " + loadedImages.size());
+    }
 
+    public void saveFiles_menuItem(ActionEvent actionEvent) {
+        Stage parent = (Stage) imageStackStage.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
+        SaveData data = new SaveData();
+        data.fileSet = images;
+        try {
+            ResourceManager.save(data, fileChooser.showSaveDialog(parent).getAbsolutePath());
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
+    }
+
+    public void loadFiles_menuItem(ActionEvent actionEvent) {
+        try {
+            Stage parent = (Stage) imageStackStage.getScene().getWindow();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
+            SaveData data = (SaveData) ResourceManager.load(fileChooser.showOpenDialog(parent).getAbsolutePath());
+            images = data.fileSet;
+            imageLoader(images);
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
+    }
+
+    public void expSaving(ActionEvent actionEvent) {
+        status = save(projectImageKeeper, images, status);
+    }
+
+    public void expLoading(ActionEvent actionEvent) {
+        images.clear();
+        images = load(projectImageKeeper, images, status);
+
+        imageLoader(images);
+    }
 }
