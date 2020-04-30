@@ -15,6 +15,8 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 public class ExpLoader {
+    private static String state;
+
     static Vector<File> load(TilePane root, Vector<File> images, StatusBar status) {
         try {
 
@@ -22,6 +24,14 @@ public class ExpLoader {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
             ZipFile zipFile = new ZipFile(fileChooser.showOpenDialog(parent).getAbsolutePath());
+            String tempPath = "C:/AlbumTemp";
+            File temp = new File(tempPath);
+            boolean bool = temp.mkdir();
+            if (bool) {
+                System.out.println("Directory created successfully");
+            } else {
+                System.out.println("Sorry couldnt create specified directory");
+            }
 
             FileInputStream fis;
 
@@ -32,7 +42,9 @@ public class ExpLoader {
             ZipEntry entry = entries.nextElement();
             while (entry != null) {
                 String fileName = entry.getName();
-                File newFile = new File(fileName);
+                File newFile = new File(temp.getAbsolutePath() + File.separator + fileName);
+                state = newFile.getAbsolutePath();
+                System.out.println(temp.getAbsolutePath() + File.separator + fileName);
                 FileOutputStream fileOutputStream = new FileOutputStream(newFile);
                 int len;
                 byte[] buffer = new byte[1024];
@@ -43,9 +55,26 @@ public class ExpLoader {
                 images.add(newFile);
                 zipInputStream.closeEntry();
                 entry = zipInputStream.getNextEntry();
+
+            }
+
+            if (temp.isDirectory() == false) {
+                System.out.println("Not a disectory. Nothing to do.");
+                return null;
+            }
+            for (File file : images) {
+                System.out.println("deleting" + file.getName());
+                file.deleteOnExit();
             }
 
 
+            temp.delete();
+
+
+            System.out.println("Deleting Directory. Success = " + temp.delete());
+
+
+            System.out.println();
             zipInputStream.closeEntry();
             zipInputStream.close();
             fis.close();

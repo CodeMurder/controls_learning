@@ -133,31 +133,33 @@
          </children>
       </AnchorPane>
       <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-            <Menu fx:id="mainMenu" mnemonicParsing="false" text="File">
-                <items>
-                    <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem"
-                              text="Open..."/>
-                    <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem"
-                              text="Open multi.."/>
-                    <SeparatorMenuItem mnemonicParsing="false"/>
-                    <MenuItem fx:id="saveOption" mnemonicParsing="false" onAction="#saveFiles_menuItem" text="Save...">
-                        <accelerator>
-                            <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
-                        </accelerator>
-                    </MenuItem>
-                    <MenuItem fx:id="loadOption" mnemonicParsing="false" onAction="#loadFiles_menuItem" text="Load..."/>
-                </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-              <items>
-                  <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#expSaving" text="Undo"/>
-                  <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#expLoading" text="Redo"/>
-                  <MenuItem mnemonicParsing="false" text="Delete"/>
-              </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
+          <menus>
+              <Menu fx:id="mainMenu" mnemonicParsing="false" text="File">
+                  <items>
+                      <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem"
+                                text="Open..."/>
+                      <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem"
+                                text="Open multi.."/>
+                      <SeparatorMenuItem mnemonicParsing="false"/>
+                      <MenuItem fx:id="saveOption" mnemonicParsing="false" onAction="#saveFiles_menuItem"
+                                text="Save...">
+                          <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                          </accelerator>
+                      </MenuItem>
+                      <MenuItem fx:id="loadOption" mnemonicParsing="false" onAction="#loadFiles_menuItem"
+                                text="Load..."/>
+                  </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                      <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#expSaving" text="Undo"/>
+                      <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#expLoading" text="Redo"/>
+                      <MenuItem mnemonicParsing="false" text="Delete"/>
+                  </items>
+              </Menu>
+              <Menu mnemonicParsing="false" text="Help">
+                  <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
