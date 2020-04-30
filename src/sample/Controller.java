@@ -2,6 +2,7 @@ package sample;
 
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -17,6 +18,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.controlsfx.control.StatusBar;
 
 import javax.imageio.ImageIO;
@@ -28,6 +30,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Vector;
 
+import static sample.ExpLoader.deleteDirectory;
 import static sample.ExpLoader.load;
 import static sample.ExpSaver.save;
 
@@ -130,6 +133,7 @@ public class Controller {
         imageStackStage.setContent(projectImageKeeper);
         imageStackStage.fitToHeightProperty();
         imageStackStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
     }
 
 
@@ -235,5 +239,15 @@ public class Controller {
         images = load(projectImageKeeper, images, status);
 
         imageLoader(images);
+
+
+    }
+
+    private final EventHandler<WindowEvent> closeEventHandler = event -> {
+        deleteDirectory(ExpLoader.temp);
+    };
+
+    public EventHandler<WindowEvent> getCloseEventHandler() {
+        return closeEventHandler;
     }
 }

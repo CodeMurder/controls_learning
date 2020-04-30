@@ -15,6 +15,7 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 public class ExpLoader {
+    public static File temp;
     private static String state;
 
     static Vector<File> load(TilePane root, Vector<File> images, StatusBar status) {
@@ -25,7 +26,7 @@ public class ExpLoader {
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
             ZipFile zipFile = new ZipFile(fileChooser.showOpenDialog(parent).getAbsolutePath());
             String tempPath = "C:/AlbumTemp";
-            File temp = new File(tempPath);
+            temp = new File(tempPath);
             boolean bool = temp.mkdir();
             if (bool) {
                 System.out.println("Directory created successfully");
@@ -58,20 +59,21 @@ public class ExpLoader {
 
             }
 
-            if (temp.isDirectory() == false) {
-                System.out.println("Not a disectory. Nothing to do.");
-                return null;
+            /*if (temp.isDirectory()) {
+                for (File file : images) {
+                    System.out.println("deleting" + file.getName());
+
+
+                    System.out.println("Deleting Files. Success = " + file.delete());
+                }
             }
-            for (File file : images) {
-                System.out.println("deleting" + file.getName());
-                file.deleteOnExit();
-            }
 
 
-            temp.delete();
+
+            temp.deleteOnExit();
 
 
-            System.out.println("Deleting Directory. Success = " + temp.delete());
+            System.out.println("Deleting Directory. Success = " + temp.delete());*/
 
 
             System.out.println();
@@ -85,4 +87,17 @@ public class ExpLoader {
         return images;
     }
 
+    public static boolean deleteDirectory(File temp) {
+        if (temp.isDirectory()) {
+            File[] children = temp.listFiles();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDirectory(children[i]);
+                if (!success) {
+                    return false;
+                }
+            }
+        } // either file or an empty directory
+        System.out.println("removing file or directory : " + temp.getName());
+        return temp.delete();
+    }
 }

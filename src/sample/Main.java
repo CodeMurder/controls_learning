@@ -6,16 +6,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static sample.ExpLoader.deleteDirectory;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("MainFrame.fxml"));
         primaryStage.setMinHeight(640);
         primaryStage.setMinWidth(930);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+
+        primaryStage.setOnCloseRequest(event -> deleteDirectory(ExpLoader.temp));
 
     }
 
