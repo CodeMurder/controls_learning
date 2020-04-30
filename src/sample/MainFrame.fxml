@@ -58,25 +58,37 @@
                                        </children>
                                     </AnchorPane>
                                  </children>
-                                 <padding>
-                                    <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                                 </padding>
                               </AnchorPane>
-                            <AnchorPane maxHeight="300.0" minHeight="-Infinity" prefHeight="200.0" prefWidth="595.0" SplitPane.resizableWithParent="false">
-                                 <children>
-                                    <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <items>
-                                          <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="595.0">
-                                             <children>
-                                                <GridPane alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <columnConstraints>
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                   </columnConstraints>
-                                                   <rowConstraints>
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                   </rowConstraints>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                                          prefHeight="200.0" prefWidth="595.0" SplitPane.resizableWithParent="false">
+                                  <children>
+                                      <SplitPane dividerPositions="0.17310789049919484" maxHeight="-Infinity"
+                                                 maxWidth="1.7976931348623157E308" orientation="VERTICAL"
+                                                 prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0"
+                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                 AnchorPane.topAnchor="0.0">
+                                          <items>
+                                              <AnchorPane maxHeight="-Infinity" minHeight="-Infinity"
+                                                          minWidth="-Infinity" prefHeight="40.0" prefWidth="595.0"
+                                                          SplitPane.resizableWithParent="false">
+                                                  <children>
+                                                      <GridPane alignment="CENTER" maxHeight="-Infinity"
+                                                                minHeight="-Infinity" prefHeight="40.0"
+                                                                prefWidth="570.0" AnchorPane.bottomAnchor="0.0"
+                                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                                                AnchorPane.topAnchor="0.0">
+                                                          <columnConstraints>
+                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+                                                                                 prefWidth="100.0"/>
+                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+                                                                                 prefWidth="100.0"/>
+                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
+                                                                                 prefWidth="100.0"/>
+                                                          </columnConstraints>
+                                                          <rowConstraints>
+                                                              <RowConstraints minHeight="10.0" prefHeight="30.0"
+                                                                              vgrow="SOMETIMES"/>
+                                                          </rowConstraints>
                                                    <children>
                                                       <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                          <children>
@@ -132,44 +144,45 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-          <menus>
-              <Menu fx:id="mainMenu" mnemonicParsing="false" text="File">
-                  <items>
-                      <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem"
-                                text="Open..."/>
-                      <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem"
-                                text="Open multi.."/>
-                      <SeparatorMenuItem mnemonicParsing="false"/>
-                      <MenuItem fx:id="saveOption" mnemonicParsing="false" onAction="#saveFiles_menuItem"
-                                text="Save...">
-                          <accelerator>
-                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
-                          </accelerator>
-                      </MenuItem>
-                      <MenuItem fx:id="loadOption" mnemonicParsing="false" onAction="#loadFiles_menuItem"
-                                text="Load..."/>
-                  </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                      <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#expSaving" text="Undo"/>
-                      <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#expLoading" text="Redo"/>
-                      <MenuItem mnemonicParsing="false" text="Delete"/>
-                  </items>
-              </Menu>
-              <Menu mnemonicParsing="false" text="Help">
-                  <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets top="2.0" />
-         </padding>
+       <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
+           <menus>
+               <Menu fx:id="mainMenu" mnemonicParsing="false" text="File">
+                   <items>
+                       <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem"
+                                 text="Open..."/>
+                       <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem"
+                                 text="Open multi.."/>
+                       <SeparatorMenuItem mnemonicParsing="false"/>
+                       <MenuItem fx:id="saveOption" mnemonicParsing="false" onAction="#saveFiles_menuItem"
+                                 text="Save...">
+                           <accelerator>
+                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                           </accelerator>
+                       </MenuItem>
+                       <MenuItem fx:id="loadOption" mnemonicParsing="false" onAction="#loadFiles_menuItem"
+                                 text="Load..."/>
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Edit">
+                   <items>
+                       <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#expSaving" text="Undo"/>
+                       <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#expLoading" text="Redo"/>
+                       <MenuItem mnemonicParsing="false" text="Delete"/>
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="About"/>
+                   </items>
+               </Menu>
+           </menus>
+           <opaqueInsets>
+               <Insets/>
+           </opaqueInsets>
+           <padding>
+               <Insets top="2.0"/>
+           </padding>
       </MenuBar>
    </children>
 </AnchorPane>

@@ -21,7 +21,15 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        primaryStage.setOnCloseRequest(event -> deleteDirectory(ExpLoader.temp));
+        primaryStage.setOnCloseRequest(event -> {
+            if (ExpLoader.temp == null) {
+                System.exit(0);
+
+            } else {
+                deleteDirectory(ExpLoader.temp);
+            }
+
+        });
 
     }
 

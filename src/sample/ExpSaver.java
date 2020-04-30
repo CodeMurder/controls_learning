@@ -45,11 +45,4 @@ public class ExpSaver {
     }
 
 
-/**
- * This Java program demonstrates how to compress multiple files in ZIP format.
- *
- * @author www.codejava.net
- */
-
-
 }
