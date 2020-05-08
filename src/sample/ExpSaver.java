@@ -14,7 +14,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ExpSaver {
-    public static StatusBar save(TilePane root, Vector<File> images, StatusBar status) {
+    protected StatusBar save(TilePane root, Vector<File> images, StatusBar status) {
         try {
             List<File> srcFiles = images;
             Stage parent = (Stage) root.getScene().getWindow();

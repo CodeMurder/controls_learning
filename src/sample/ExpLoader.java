@@ -18,7 +18,7 @@ public class ExpLoader {
     public static File temp;
     private static String state;
 
-    static Vector<File> load(TilePane root, Vector<File> images, StatusBar status) {
+    protected Vector<File> load(TilePane root, Vector<File> images, StatusBar status) {
         try {
 
             Stage parent = (Stage) root.getScene().getWindow();
