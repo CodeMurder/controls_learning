@@ -3,7 +3,6 @@ package sample;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.controlsfx.control.StatusBar;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,10 +14,10 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 public class ExpLoader {
-    public static File temp;
-    private static String state;
+    protected static File temp;
+    protected static String state;
 
-    protected Vector<File> load(TilePane root, Vector<File> images, StatusBar status) {
+    protected Vector<File> load(TilePane root, Vector<File> images) {
         try {
 
             Stage parent = (Stage) root.getScene().getWindow();

@@ -35,7 +35,7 @@ public class FileController {
     }
 
     protected Vector<File> load() {
-        return new ExpLoader().load(projectImageKeeper, image, status);
+        return new ExpLoader().load(projectImageKeeper, image);
     }
 
     protected Vector<File> openMultiple() {

@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
@@ -39,9 +40,10 @@ public class MainController {
 
     // file array to store read images info
     Vector<File> images = new Vector<>();
-
     @FXML
-    private ProgressIndicator loadingIndicator;
+    public Label imageName;
+    @FXML
+    public ProgressIndicator loadingIndicator;
 
     @FXML
     public ScrollPane queueKeeperStage;
@@ -112,6 +114,7 @@ public class MainController {
         imageStackStage.setContent(projectImageKeeper);
         imageStackStage.fitToHeightProperty();
         imageStackStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        loadingIndicator.setVisible(false);
 
     }
 
@@ -135,15 +138,13 @@ public class MainController {
         pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-border-color:blue"));
         pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-color:white"));
         pageBox.setOnMouseClicked(mouseEvent -> {
-
             bigImageView.setImage(new Image(file.toURI().toString()));
             bigImageView.setSmooth(false);
             bigImageView.setFitHeight(bigImagePane.getHeight());
             if (bigImageView.getFitWidth() > bigImagePane.getWidth()) {
                 bigImageView.setFitWidth(bigImagePane.getWidth());
             }
-
-            status.setText("Selected image: " + file.getName());
+            imageName.setText("Selected image: " + file.getName());
         });
         return pageBox;
     }
@@ -161,36 +162,52 @@ public class MainController {
             imageView.setCursor(Cursor.HAND);
         } catch (IOException ex) {
 
-
+            status.setText(ex.getMessage());
         }
     }
 
     public void imageLoader() {
-        do {
-            projectImageKeeper.getChildren().add(createPage(count));
-            count++;
-        } while (images.size() > count);
-
+        try {
+            do {
+                projectImageKeeper.getChildren().add(createPage(count));
+                count++;
+            } while (images.size() > count);
+            status.setText("Images loaded successfully: " + images.size());
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
     }
 
     public void imageLoader(Vector<File> loadedImages) {
-        projectImageKeeper.getChildren().clear();
-        count = 0;
-        do {
-            projectImageKeeper.getChildren().add(createPage(count));
-            count++;
-        } while (loadedImages.size() > count);
-        status.setText("Images loaded successfully: " + loadedImages.size());
+        try {
+            projectImageKeeper.getChildren().clear();
+            count = 0;
+            do {
+                projectImageKeeper.getChildren().add(createPage(count));
+                count++;
+            } while (loadedImages.size() > count);
+            status.setText("Images loaded successfully: " + loadedImages.size());
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
     }
 
 
     public void saving(ActionEvent actionEvent) {
-        status = new FileController(projectImageKeeper, images, status).save();
+        try {
+            status = new FileController(projectImageKeeper, images, status).save();
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
     }
 
     public void loading(ActionEvent actionEvent) {
-        images.clear();
-        imageLoader(new FileController(projectImageKeeper, images, status).load());
+        try {
+            images.clear();
+            imageLoader(new FileController(projectImageKeeper, images, status).load());
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
 
     }
 
