@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="some refactoring work">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="some refactoring work2">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpLoader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ResourceManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/SaveData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ExpLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ExpLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ImageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ImageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainFrame.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +107,7 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
@@ -360,7 +357,21 @@
       <option name="project" value="LOCAL" />
       <updated>1588976237649</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="some refactoring work2">
+      <created>1589113724576</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1589113724576</updated>
+    </task>
+    <task id="LOCAL-00016" summary="some refactoring work2">
+      <created>1589113750818</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1589113750818</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -446,7 +457,8 @@
     <MESSAGE value="added load/save into own format system (v2)" />
     <MESSAGE value="fully worked load/save system (prototype)" />
     <MESSAGE value="some refactoring work" />
-    <option name="LAST_COMMIT_MESSAGE" value="some refactoring work" />
+    <MESSAGE value="some refactoring work2" />
+    <option name="LAST_COMMIT_MESSAGE" value="some refactoring work2" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -463,10 +475,10 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="223" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.814@0.0.1536.814" timestamp="1586959314361" />
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1588973957879">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1589117609148">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.814@0.0.1536.814" timestamp="1588973957879" />
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.814@0.0.1536.814" timestamp="1589117609148" />
     <state x="498" y="195" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1584996878755">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -483,10 +495,10 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="499" y="158" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.814@0.0.1536.814" timestamp="1588194601785" />
-    <state x="424" y="0" key="CommitChangelistDialog2" timestamp="1588976234515">
+    <state x="424" y="0" key="CommitChangelistDialog2" timestamp="1589113749471">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state x="424" y="0" key="CommitChangelistDialog2/0.0.1536.814@0.0.1536.814" timestamp="1588976234515" />
+    <state x="424" y="0" key="CommitChangelistDialog2/0.0.1536.814@0.0.1536.814" timestamp="1589113749471" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1588184238160">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -499,22 +511,22 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="483" y="255" key="Github.CreatePullRequestDialog/0.0.1536.814@0.0.1536.814" timestamp="1585348084560" />
-    <state width="1492" height="209" key="GridCell.Tab.0.bottom" timestamp="1589113212738">
+    <state width="1492" height="207" key="GridCell.Tab.0.bottom" timestamp="1589117501263">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="209" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589113212738" />
-    <state width="1492" height="209" key="GridCell.Tab.0.center" timestamp="1589113212738">
+    <state width="1492" height="207" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589117501263" />
+    <state width="1492" height="207" key="GridCell.Tab.0.center" timestamp="1589117501262">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="209" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589113212738" />
-    <state width="1492" height="209" key="GridCell.Tab.0.left" timestamp="1589113212738">
+    <state width="1492" height="207" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589117501262" />
+    <state width="1492" height="207" key="GridCell.Tab.0.left" timestamp="1589117501262">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="209" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589113212738" />
-    <state width="1492" height="209" key="GridCell.Tab.0.right" timestamp="1589113212738">
+    <state width="1492" height="207" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589117501262" />
+    <state width="1492" height="207" key="GridCell.Tab.0.right" timestamp="1589117501262">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="209" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589113212738" />
+    <state width="1492" height="207" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589117501262" />
     <state width="1492" height="241" key="GridCell.Tab.1.bottom" timestamp="1588975683075">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
