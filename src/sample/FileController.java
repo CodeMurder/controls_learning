@@ -55,10 +55,10 @@ public class FileController {
         File selectedDirectory = directoryChooser.showDialog(parent);
 
         if (selectedDirectory != null) {
-            FilenameFilter filterJpg = (File dir, String name) -> name.toLowerCase().endsWith(".jpg"); // тут эта хуйня фиьтрует по расширению
-            FilenameFilter filterPng = (File dir, String name) -> name.toLowerCase().endsWith(".png"); // тут эта хуйня фиьтрует по расширению
+            FilenameFilter filterJpg = (File dir, String name) -> name.toLowerCase().endsWith(".jpg");
+            FilenameFilter filterPng = (File dir, String name) -> name.toLowerCase().endsWith(".png");
             FilenameFilter filterGif = (File dir, String name) -> name.toLowerCase().endsWith(".gif");
-            // тут записывает всю отфильтрованную хуету в масив типа ФАЙЛ
+
             image.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterJpg))));
             image.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterPng))));
             image.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterGif))));
