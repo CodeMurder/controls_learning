@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -26,7 +25,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.StatusBar?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="640.0" minWidth="930.0" prefHeight="640.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="640.0" minWidth="930.0" prefHeight="640.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
     <children>
         <AnchorPane prefHeight="640.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
             <children>
@@ -37,22 +36,19 @@
                                 <ScrollPane fx:id="imageStackStage" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="581.0" prefWidth="350.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <content>
                                         <HBox fx:id="pageBox" />
-                              <TilePane fx:id="projectImageKeeper" hgap="9.0" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="0" prefHeight="608.0" prefRows="0" prefWidth="306.0" style="-fx-background-color: #232329;" vgap="9.0">
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </TilePane>
-                           </content>
-                           <contextMenu>
-                              <ContextMenu>
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Import..." />
-                                </items>
-                              </ContextMenu>
-                           </contextMenu>
+                                        <TilePane fx:id="projectImageKeeper" hgap="9.0" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="0" prefHeight="608.0" prefRows="0" prefWidth="306.0" style="-fx-background-color: #232329;" vgap="9.0">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </TilePane>
+                                    </content>
                         </ScrollPane>
                         <StatusBar fx:id="status" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="11.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                                <ProgressIndicator fx:id="loadingIndicator" depthTest="DISABLE" layoutX="137.60000610351562" layoutY="276.79998779296875" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="50.0" prefWidth="50.0" AnchorPane.bottomAnchor="276.0000122070312" AnchorPane.leftAnchor="137.60000610351562" AnchorPane.rightAnchor="136.79999389648435" AnchorPane.topAnchor="276.79998779296875" />
+                        <StackPane layoutX="135.82594299316406" layoutY="276.07757568359375" AnchorPane.bottomAnchor="276.0000122070312" AnchorPane.leftAnchor="137.60000610351562" AnchorPane.rightAnchor="136.79999389648435" AnchorPane.topAnchor="276.79998779296875">
+                           <children>
+                                      <ProgressIndicator fx:id="loadingIndicator" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="50.0" prefWidth="50.0" />
+                           </children>
+                        </StackPane>
                      </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -106,9 +102,9 @@
                                                                       </Button>
                                                                       <Button contentDisplay="TOP" mnemonicParsing="false" text="➡">
                                                                           <tooltip>
-                                                                  <Tooltip opacity="0.78" text="Next" />
-                                                               </tooltip>
-                                                            </Button>
+                                                                              <Tooltip opacity="0.78" text="Next" />
+                                                                          </tooltip>
+                                                                      </Button>
                                                          </children>
                                                       </FlowPane>
                                                       <FlowPane alignment="CENTER_RIGHT" hgap="5.0" layoutX="209.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
@@ -120,33 +116,36 @@
                                                             </ToggleButton>
                                                              <Button fx:id="test" mnemonicParsing="false" text="⬅" />
                                                          </children>
-                                                         <opaqueInsets>
-                                                            <Insets />
-                                                         </opaqueInsets>
-                                                         <GridPane.margin>
-                                                            <Insets right="10.0" />
-                                                         </GridPane.margin>
+                                                          <opaqueInsets>
+                                                              <Insets />
+                                                          </opaqueInsets>
+                                                          <GridPane.margin>
+                                                              <Insets right="10.0" />
+                                                          </GridPane.margin>
                                                       </FlowPane>
-                                                      <FlowPane alignment="CENTER">
-                                                         <children>
-                                                            <Label fx:id="imageName">
-                                                               <font>
-                                                                  <Font size="14.0" />
-                                                               </font>
-                                                            </Label>
-                                                         </children>
-                                                      </FlowPane>
-                                                   </children>
+                                                              <FlowPane alignment="CENTER_LEFT">
+                                                                  <children>
+                                                                      <Label fx:id="imageName" textAlignment="JUSTIFY">
+                                                                          <font>
+                                                                              <Font size="13.0" />
+                                                                          </font>
+                                                                      </Label>
+                                                                  </children>
+                                                                  <padding>
+                                                                      <Insets left="10.0" />
+                                                                  </padding>
+                                                              </FlowPane>
+                                                          </children>
                                                 </GridPane>
                                              </children>
                                           </AnchorPane>
                                           <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" prefHeight="202.0" prefWidth="595.0" vbarPolicy="NEVER">
                                              <content>
-                                                 <TilePane fx:id="projectImageQueue" hgap="9.0" minHeight="-Infinity" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="3" prefHeight="202.0" prefRows="0" prefWidth="595.0" style="-fx-background-color: #232329;" vgap="9.0">
-                                                     <padding>
-                                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                     </padding>
-                                                 </TilePane>
+                                                <HBox fx:id="projectImageQueue" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #3a3a3a;">
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
                                              </content>
                                           </ScrollPane>
                                        </items>
@@ -167,26 +166,34 @@
                     <items>
                         <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem" text="Open..." />
                         <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem" text="Open multi.." />
+                  <Menu fx:id="recentProjectsMenu" mnemonicParsing="false" text="Recent projects..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#saving" text="Save...">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                        <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#loading" text="Load...">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                  <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum" text="Export..." />
+                        <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#loading" text="Import...">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator>
+                        </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Exit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
+                  <MenuItem fx:id="undoMenu" mnemonicParsing="false" onAction="#undoMenuOperation" text="Undo" />
+                  <MenuItem fx:id="redoMenu" mnemonicParsing="false" onAction="#redoMenuOperation" text="Redo" />
 
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation" text="Delete" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" text="About" />
                     </items>
                 </Menu>
             </menus>

@@ -2,22 +2,19 @@ package sample;
 
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import javafx.stage.WindowEvent;
+import javafx.scene.layout.VBox;
 import org.controlsfx.control.StatusBar;
 
 import javax.imageio.ImageIO;
@@ -25,8 +22,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
-
-import static sample.ExpLoader.deleteDirectory;
 
 
 public class MainController {
@@ -37,9 +32,11 @@ public class MainController {
 
 
     public static final double ELEMENT_SIZE = 90;
+    public static final double QUEUED_ELEMENT_SIZE = 110;
 
     // file array to store read images info
     Vector<File> images = new Vector<>();
+    Vector<File> queuedImages = new Vector<>();
     @FXML
     public Label imageName;
     @FXML
@@ -49,13 +46,43 @@ public class MainController {
     public ScrollPane queueKeeperStage;
 
     @FXML
-    public TilePane projectImageQueue;
+    public HBox projectImageQueue;
 
     @FXML
-    public MenuItem OpenFiles_btn;
+    private Menu mainMenu;
 
     @FXML
-    public MenuItem multiOpen_MenuItem;
+    private MenuItem OpenFiles_btn;
+
+    @FXML
+    private MenuItem multiOpen_MenuItem;
+
+    @FXML
+    private Menu recentProjectsMenu;
+
+    @FXML
+    private MenuItem expSave;
+
+    @FXML
+    private MenuItem saveAlbumMenu;
+
+    @FXML
+    private MenuItem expLoad;
+
+    @FXML
+    private MenuItem exitMenu;
+
+    @FXML
+    private MenuItem undoMenu;
+
+    @FXML
+    private MenuItem redoMenu;
+
+    @FXML
+    private MenuItem deleteMenu;
+
+    @FXML
+    private MenuItem aboutMenu;
 
     @FXML
     public StatusBar status;
@@ -69,7 +96,7 @@ public class MainController {
 
     @FXML
     public ScrollPane imageStackStage;
-
+    ContextMenu contextMenu = new ContextMenu();
     // ContextMenu
     ////
     @FXML
@@ -80,18 +107,10 @@ public class MainController {
     }
 
     @FXML
-    void handleDragDroppedTilePane(DragEvent event) {                       //add method
+    void handleDragDroppedTilePane(DragEvent event) {
         images.addAll(event.getDragboard().getFiles());
         imageLoader();
         status.setText("Images loaded successfully: " + images.size());
-    }
-
-    ///
-    @FXML
-    void handleDragDetectedHBox(DragEvent event) {
-        if (event.getDragboard().hasFiles()) {
-            event.acceptTransferModes(TransferMode.ANY);
-        }
     }
 
     @FXML
@@ -112,9 +131,13 @@ public class MainController {
     @FXML
     void initialize() {
         imageStackStage.setContent(projectImageKeeper);
+        projectImageKeeper.setAlignment(Pos.TOP_LEFT);
         imageStackStage.fitToHeightProperty();
         imageStackStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         loadingIndicator.setVisible(false);
+        ///wtf idk
+        queueKeeperStage.setContent(projectImageQueue);
+        queueKeeperStage.fitToWidthProperty();
 
     }
 
@@ -144,8 +167,16 @@ public class MainController {
             if (bigImageView.getFitWidth() > bigImagePane.getWidth()) {
                 bigImageView.setFitWidth(bigImagePane.getWidth());
             }
-            imageName.setText("Selected image: " + file.getName());
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                if (mouseEvent.getClickCount() == 2) {
+                    queueLoader(file);
+                    queuedImages.add(file);
+                }
+            }
+            imageName.setText(file.getName());
         });
+
+
         return pageBox;
     }
 
@@ -160,10 +191,48 @@ public class MainController {
             imageView.setSmooth(true);
             imageView.setCache(true);
             imageView.setCursor(Cursor.HAND);
+
         } catch (IOException ex) {
 
             status.setText(ex.getMessage());
         }
+    }
+
+    public void queueLoader(File file) {
+        projectImageQueue.getChildren().add(createQueuePage(file));
+    }
+
+    public VBox createQueuePage(File file) {
+        ImageView imageView = new ImageView();
+        setImage(imageView, file);
+        VBox queuePageBox = new VBox();
+        queuePageBox.getChildren().add(getQueueVBox(imageView, file));
+        return queuePageBox;
+    }
+
+    public HBox getQueueVBox(ImageView imageView, File file) {
+        HBox queuePageBox = new HBox();
+        queuePageBox.getChildren().add(imageView);
+
+        queuePageBox.setAlignment(Pos.CENTER);
+
+        imageView = null;
+        queuePageBox.setStyle("-fx-border-color:black");
+        queuePageBox.setOnMouseEntered(mouseEvent -> queuePageBox.setStyle("-fx-border-color:blue"));
+        queuePageBox.setOnMouseExited(mouseEvent -> queuePageBox.setStyle("-fx-border-color:black"));
+        queuePageBox.setOnMouseClicked(mouseEvent -> {
+            bigImageView.setImage(new Image(file.toURI().toString()));
+            bigImageView.setSmooth(false);
+            bigImageView.setFitHeight(bigImagePane.getHeight());
+            if (bigImageView.getFitWidth() > bigImagePane.getWidth()) {
+                bigImageView.setFitWidth(bigImagePane.getWidth());
+            }
+
+            imageName.setText(file.getName());
+        });
+
+
+        return queuePageBox;
     }
 
     public void imageLoader() {
@@ -211,11 +280,21 @@ public class MainController {
 
     }
 
-    private final EventHandler<WindowEvent> closeEventHandler = event -> {
-        deleteDirectory(ExpLoader.temp);
-    };
 
-    public EventHandler<WindowEvent> getCloseEventHandler() {
-        return closeEventHandler;
+    public void saveAlbum(ActionEvent actionEvent) {
+
+    }
+
+    public void exiting(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void undoMenuOperation(ActionEvent actionEvent) {
+    }
+
+    public void redoMenuOperation(ActionEvent actionEvent) {
+    }
+
+    public void deleteMenuOperation(ActionEvent actionEvent) {
     }
 }
