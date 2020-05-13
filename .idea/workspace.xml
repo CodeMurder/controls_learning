@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:new-way" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="make next/previous buttons">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Admin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sample/RecentProject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpLoader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpSaver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ExpLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ExpLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/ExpSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ExpSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/RecentProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RecentProject.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,10 +100,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="fdb6aae69674cc47037a9b98029abfac19fd1fff" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
   </component>
   <component name="GithubProjectSettings">
     <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
@@ -400,7 +426,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="New_changes" />
+                        <option value="new-way" />
                       </list>
                     </value>
                   </entry>
@@ -478,10 +504,10 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="223" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.814@0.0.1536.814" timestamp="1586959314361" />
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1589386160717">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1589401320722">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.814@0.0.1536.814" timestamp="1589386160717" />
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.814@0.0.1536.814" timestamp="1589401320722" />
     <state x="498" y="195" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1584996878755">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -498,6 +524,10 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="499" y="158" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1536.814@0.0.1536.814" timestamp="1588194601785" />
+    <state x="874" y="319" width="446" height="495" key="#xdebugger.XInspectDialog" timestamp="1589398565646">
+      <screen x="0" y="0" width="1536" height="814" />
+    </state>
+    <state x="874" y="319" width="446" height="495" key="#xdebugger.XInspectDialog/0.0.1536.814@0.0.1536.814" timestamp="1589398565646" />
     <state x="424" y="0" key="CommitChangelistDialog2" timestamp="1589323060029">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -514,38 +544,42 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="483" y="255" key="Github.CreatePullRequestDialog/0.0.1536.814@0.0.1536.814" timestamp="1585348084560" />
-    <state width="1492" height="198" key="GridCell.Tab.0.bottom" timestamp="1589389829964">
+    <state width="1492" height="198" key="GridCell.Tab.0.bottom" timestamp="1589408101642">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="198" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589389829964" />
-    <state width="1492" height="198" key="GridCell.Tab.0.center" timestamp="1589389829963">
+    <state width="1492" height="198" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589408101642" />
+    <state width="1492" height="198" key="GridCell.Tab.0.center" timestamp="1589408101642">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="198" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589389829963" />
-    <state width="1492" height="198" key="GridCell.Tab.0.left" timestamp="1589389829963">
+    <state width="1492" height="198" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589408101642" />
+    <state width="1492" height="198" key="GridCell.Tab.0.left" timestamp="1589408101642">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="198" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589389829963" />
-    <state width="1492" height="198" key="GridCell.Tab.0.right" timestamp="1589389829963">
+    <state width="1492" height="198" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589408101642" />
+    <state width="1492" height="198" key="GridCell.Tab.0.right" timestamp="1589408101642">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="198" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589389829963" />
-    <state width="1492" height="239" key="GridCell.Tab.1.bottom" timestamp="1589321216434">
+    <state width="1492" height="198" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589408101642" />
+    <state width="1492" height="199" key="GridCell.Tab.1.bottom" timestamp="1589407371510">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="239" key="GridCell.Tab.1.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
-    <state width="1492" height="239" key="GridCell.Tab.1.center" timestamp="1589321216434">
+    <state width="1492" height="199" key="GridCell.Tab.1.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589407371510" />
+    <state width="1492" height="199" key="GridCell.Tab.1.center" timestamp="1589407371510">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="239" key="GridCell.Tab.1.center/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
-    <state width="1492" height="239" key="GridCell.Tab.1.left" timestamp="1589321216434">
+    <state width="1492" height="199" key="GridCell.Tab.1.center/0.0.1536.814@0.0.1536.814" timestamp="1589407371510" />
+    <state width="1492" height="199" key="GridCell.Tab.1.left" timestamp="1589407371509">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="239" key="GridCell.Tab.1.left/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
-    <state width="1492" height="239" key="GridCell.Tab.1.right" timestamp="1589321216434">
+    <state width="1492" height="199" key="GridCell.Tab.1.left/0.0.1536.814@0.0.1536.814" timestamp="1589407371509" />
+    <state width="1492" height="199" key="GridCell.Tab.1.right" timestamp="1589407371510">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="239" key="GridCell.Tab.1.right/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
+    <state width="1492" height="199" key="GridCell.Tab.1.right/0.0.1536.814@0.0.1536.814" timestamp="1589407371510" />
+    <state x="94" y="74" key="MergeDialog" timestamp="1589393129651">
+      <screen x="0" y="0" width="1536" height="814" />
+    </state>
+    <state x="94" y="74" key="MergeDialog/0.0.1536.814@0.0.1536.814" timestamp="1589393129651" />
     <state x="564" y="114" key="RollbackChangesDialog" timestamp="1589112000289">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -582,6 +616,10 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="682" y="238" key="extract.method.dialog/0.0.1536.814@0.0.1536.814" timestamp="1584825161088" />
+    <state x="550" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1589393122093">
+      <screen x="0" y="0" width="1536" height="814" />
+    </state>
+    <state x="550" y="124" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.814@0.0.1536.814" timestamp="1589393122093" />
     <state x="28" y="41" key="new project wizard" timestamp="1587655862491">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -598,5 +636,20 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="431" y="135" width="672" height="678" key="search.everywhere.popup/0.0.1536.814@0.0.1536.814" timestamp="1588964905683" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="java.io.FileOutputStream" fieldName="path" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="fis" />
+        <watch expression="entries" />
+        <watch expression="zipFile" />
+        <watch expression="entry" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -8,22 +8,23 @@ import org.controlsfx.control.StatusBar;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.List;
 import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class ExpSaver {
+
     protected StatusBar save(TilePane root, Vector<File> images, StatusBar status) {
         try {
-            List<File> srcFiles = images;
+            String filepath;
             Stage parent = (Stage) root.getScene().getWindow();
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
-            FileOutputStream fos = new FileOutputStream(new RecentProject().addFilepath(fileChooser.showSaveDialog(parent).getAbsolutePath()));
-
+            filepath = fileChooser.showSaveDialog(parent).getAbsolutePath();
+            FileOutputStream fos = new FileOutputStream(filepath);
             ZipOutputStream zipOut = new ZipOutputStream(fos);
-            for (File srcFile : srcFiles) {
+
+            for (File srcFile : images) {
                 File fileToZip = new File(String.valueOf(srcFile));
                 FileInputStream fis = new FileInputStream(fileToZip);
                 ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
@@ -37,11 +38,13 @@ public class ExpSaver {
                 fis.close();
             }
             zipOut.close();
+            RecentProject.setFilepath(filepath);
             fos.close();
+            status.setText("Successfully saved)");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-        status.setText("Succesfully saved)");
+
         return status;
     }
 

@@ -39,7 +39,7 @@ public class ExpLoader {
             fis = new FileInputStream(zipFile.getName());
             ZipInputStream zipInputStream = new ZipInputStream(fis);
 
-            ZipEntry entry = entries.nextElement();
+            ZipEntry entry = zipInputStream.getNextEntry();
             while (entry != null) {
                 String fileName = entry.getName();
                 File newFile = new File(temp.getAbsolutePath() + File.separator + fileName);
@@ -58,21 +58,6 @@ public class ExpLoader {
 
             }
 
-            /*if (temp.isDirectory()) {
-                for (File file : images) {
-                    System.out.println("deleting" + file.getName());
-
-
-                    System.out.println("Deleting Files. Success = " + file.delete());
-                }
-            }
-
-
-
-            temp.deleteOnExit();
-
-
-            System.out.println("Deleting Directory. Success = " + temp.delete());*/
 
 
             System.out.println();

@@ -287,6 +287,8 @@ public class MainController {
     public void saving(ActionEvent actionEvent) {
         try {
             status = new FileController(projectImageKeeper, images, status).save();
+
+
         } catch (Exception e) {
             status.setText(e.getMessage());
         }
@@ -307,7 +309,8 @@ public class MainController {
 
     }
 
-    public void exiting(ActionEvent actionEvent) {
+    public void exiting(ActionEvent actionEvent) throws Exception {
+        RecentProject.closeStream();
         System.exit(0);
     }
 
