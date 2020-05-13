@@ -144,12 +144,16 @@ public class MainController {
         imageStackStage.fitToHeightProperty();
         imageStackStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         loadingIndicator.setVisible(false);
-        ///wtf idk
 
 
         queueKeeperStage.setContent(projectImageQueue);
         queueKeeperStage.fitToWidthProperty();
         projectImageQueue.setAlignment(Pos.CENTER_LEFT);
+        try {
+            new RecentProject().loadPathes();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -317,7 +321,7 @@ public class MainController {
     }
 
     public void handleNextButton(MouseEvent mouseEvent) {
-        //  setSizes();
+
 
         if (position_count >= 0 && position_count < queuedImages.size() - 1) {
             position_count++;

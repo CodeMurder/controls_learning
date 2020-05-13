@@ -20,7 +20,8 @@ public class ExpSaver {
             Stage parent = (Stage) root.getScene().getWindow();
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
-            FileOutputStream fos = new FileOutputStream(fileChooser.showSaveDialog(parent).getAbsolutePath());
+            FileOutputStream fos = new FileOutputStream(new RecentProject().addFilepath(fileChooser.showSaveDialog(parent).getAbsolutePath()));
+
             ZipOutputStream zipOut = new ZipOutputStream(fos);
             for (File srcFile : srcFiles) {
                 File fileToZip = new File(String.valueOf(srcFile));

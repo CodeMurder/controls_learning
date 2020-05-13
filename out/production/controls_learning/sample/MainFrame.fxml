@@ -42,14 +42,15 @@
                                             </padding>
                                         </TilePane>
                                     </content>
-                        </ScrollPane>
-                        <StatusBar fx:id="status" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="11.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                        <StackPane layoutX="135.82594299316406" layoutY="276.07757568359375" AnchorPane.bottomAnchor="276.0000122070312" AnchorPane.leftAnchor="137.60000610351562" AnchorPane.rightAnchor="136.79999389648435" AnchorPane.topAnchor="276.79998779296875">
-                           <children>
-                                      <ProgressIndicator fx:id="loadingIndicator" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="50.0" prefWidth="50.0" />
-                           </children>
-                        </StackPane>
-                     </children></AnchorPane>
+                                </ScrollPane>
+                                <StatusBar fx:id="status" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="11.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                <StackPane layoutX="135.82594299316406" layoutY="276.07757568359375" AnchorPane.bottomAnchor="276.0000122070312" AnchorPane.leftAnchor="137.60000610351562" AnchorPane.rightAnchor="136.79999389648435" AnchorPane.topAnchor="276.79998779296875">
+                                    <children>
+                                        <ProgressIndicator fx:id="loadingIndicator" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="50.0" prefWidth="50.0" />
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <SplitPane dividerPositions="0.5807412309728657" orientation="VERTICAL" prefHeight="606.0" prefWidth="647.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -139,15 +140,15 @@
                                                 </GridPane>
                                              </children>
                                           </AnchorPane>
-                                          <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" prefHeight="202.0" prefWidth="595.0" vbarPolicy="NEVER">
-                                             <content>
-                                                <HBox fx:id="projectImageQueue" alignment="CENTER_LEFT" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #3a3a3a;">
-                                                   <padding>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </content>
-                                          </ScrollPane>
+                                              <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" prefHeight="202.0" prefWidth="595.0" vbarPolicy="NEVER">
+                                                  <content>
+                                                      <HBox fx:id="projectImageQueue" alignment="CENTER_LEFT" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #3a3a3a;">
+                                                          <padding>
+                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                          </padding>
+                                                      </HBox>
+                                                  </content>
+                                              </ScrollPane>
                                        </items>
                                       </SplitPane>
                                   </children>
@@ -166,27 +167,27 @@
                     <items>
                         <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem" text="Open..." />
                         <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem" text="Open multi.." />
-                  <Menu fx:id="recentProjectsMenu" mnemonicParsing="false" text="Recent projects..." />
+                        <Menu fx:id="recentProjectsMenu" mnemonicParsing="false" text="Recent projects..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#saving" text="Save...">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                  <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum" text="Export..." />
+                        <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum" text="Export..." />
                         <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#loading" text="Import...">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                             </accelerator>
                         </MenuItem>
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Exit" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Exit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                  <MenuItem fx:id="undoMenu" mnemonicParsing="false" onAction="#undoMenuOperation" text="Undo" />
-                  <MenuItem fx:id="redoMenu" mnemonicParsing="false" onAction="#redoMenuOperation" text="Redo" />
+                        <MenuItem fx:id="undoMenu" mnemonicParsing="false" onAction="#undoMenuOperation" text="Undo" />
+                        <MenuItem fx:id="redoMenu" mnemonicParsing="false" onAction="#redoMenuOperation" text="Redo" />
 
                         <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation" text="Delete" />
                     </items>
