@@ -151,6 +151,7 @@ public class MainController {
         projectImageQueue.setAlignment(Pos.CENTER_LEFT);
         try {
             new RecentProject().loadPathes();
+            recentProjectsMenu.getItems().addAll(RecentProject.createShortcuts());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

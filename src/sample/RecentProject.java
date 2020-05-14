@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.control.MenuItem;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -30,11 +32,35 @@ public class RecentProject {
     }
 
     public static void setFilepath(String filepath) throws IOException {
+        if (filePathList.size() > 6) {
+            filePathList.remove(0);
+            updateRecentProjects();
+        }
         filePathList.add(filepath);
         fw.write(filepath + "\n");
         fw.flush();
+
     }
 
+    public static void updateRecentProjects() {
+        filePathList.trimToSize();
+    }
+
+    public static MenuItem[] createShortcuts() {
+        MenuItem[] items = new MenuItem[filePathList.size()];
+        updateRecentProjects();
+        for (int i = 0; i < filePathList.size(); i++) {
+            items[i] = new MenuItem(filePathList.elementAt(i));
+
+            int finalI = i;
+            items[i].setOnAction(e -> {
+                FileController.openRecent(filePathList.get(finalI));
+
+            });
+        }
+
+        return items;
+    }
 
     public static void closeStream() throws IOException {
         fw.close();

@@ -30,6 +30,7 @@ public class FileController {
         this.image = img;
     }
 
+
     protected StatusBar save() {
         return new ExpSaver().save(projectImageKeeper, image, status);
     }
@@ -44,6 +45,11 @@ public class FileController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif"));
         image.addAll(fileChooser.showOpenMultipleDialog(parent));
         return image;
+    }
+
+    protected static void openRecent(String path) {
+        new MainController().imageLoader(new ExpLoader().loadRecent(path));
+
     }
 
     protected Vector<File> openFromDirectory() {
