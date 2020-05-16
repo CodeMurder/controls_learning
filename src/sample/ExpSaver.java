@@ -17,19 +17,19 @@ import java.util.zip.ZipOutputStream;
 public class ExpSaver {
 
     protected StatusBar save(TilePane root, Vector<File> images, StatusBar status) {
-        return getStatusBar(images, status, root.getScene());
+        return getStatusBar(images, status, root.getScene(), "*.albprj");
     }
 
     protected StatusBar save(HBox root, Vector<File> images, StatusBar status) {
-        return getStatusBar(images, status, root.getScene());
+        return getStatusBar(images, status, root.getScene(), "*.alb");
     }
 
-    private StatusBar getStatusBar(Vector<File> images, StatusBar status, Scene scene) {
+    private StatusBar getStatusBar(Vector<File> images, StatusBar status, Scene scene, String extension) {
         try {
 
             Stage parent = (Stage) scene.getWindow();
             FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", extension));
             FileOutputStream fos = new FileOutputStream(fileChooser.showSaveDialog(parent).getAbsolutePath());
             ZipOutputStream zipOut = new ZipOutputStream(fos);
 

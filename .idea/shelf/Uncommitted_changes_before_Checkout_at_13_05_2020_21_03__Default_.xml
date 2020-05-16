@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]" date="1589393034124" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 13.05.2020 21:03 [Default]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/controls_learning/sample/Main.class" />
+    <option name="AFTER_PATH" value="out/production/controls_learning/sample/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/controls_learning/sample/ExpSaver.class" />
+    <option name="AFTER_PATH" value="out/production/controls_learning/sample/ExpSaver.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/ExpSaver.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/controls_learning/sample/ExpLoader.class" />
+    <option name="AFTER_PATH" value="out/production/controls_learning/sample/ExpLoader.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/ExpLoader.class" />
+  </binary>
+</changelist>

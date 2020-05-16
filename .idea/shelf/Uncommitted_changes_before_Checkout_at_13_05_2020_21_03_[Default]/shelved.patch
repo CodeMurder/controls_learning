@@ -1,0 +1,595 @@
+Index: src/sample/MainController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/MainController.java	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ src/sample/MainController.java	(date 1589392109604)
+@@ -2,6 +2,7 @@
+ 
+ 
+ import javafx.event.ActionEvent;
++import javafx.event.EventHandler;
+ import javafx.fxml.FXML;
+ import javafx.geometry.Pos;
+ import javafx.scene.Cursor;
+@@ -16,6 +17,7 @@
+ import javafx.scene.layout.StackPane;
+ import javafx.scene.layout.TilePane;
+ import javafx.scene.layout.VBox;
++import javafx.stage.WindowEvent;
+ import org.controlsfx.control.StatusBar;
+ 
+ import javax.imageio.ImageIO;
+@@ -24,6 +26,8 @@
+ import java.io.IOException;
+ import java.util.Vector;
+ 
++import static sample.ExpLoader.deleteDirectory;
++
+ 
+ public class MainController {
+ 
+@@ -345,4 +349,13 @@
+ 
+         }
+     }
++    private final EventHandler<WindowEvent> closeEventHandler = event -> {
++
++        deleteDirectory(ExpLoader.temp);
++
++    };
++
++    public EventHandler<WindowEvent> getCloseEventHandler() {
++        return closeEventHandler;
++    }
+ }
+Index: src/sample/RecentProject.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/RecentProject.java	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ src/sample/RecentProject.java	(date 1589391826223)
+@@ -3,35 +3,48 @@
+ import java.io.File;
+ import java.io.FileReader;
+ import java.io.FileWriter;
++import java.io.IOException;
+ import java.util.List;
+ import java.util.Scanner;
+ 
+ public class RecentProject {
+     List<String> filePathList;
+     String path;
++    File recentLog = new File("recent.txt");
++
++    public RecentProject() throws IOException {
++        if (!recentLog.exists()){
++        recentLog.createNewFile();}
++        else  {
++            System.out.println("log exist already.");
++
++        }
++    }
+ 
+     public String getFilepath(File file) {
+ 
+         return file.getAbsolutePath();
+     }
+ 
+-    public String addFilepath(String filepath) throws Exception {
++    public void addFilepath(String filepath) throws Exception {
+         this.filePathList.add(filepath);
+-        savePathes();
+-        return filepath;
++
+     }
+ 
+     public void savePathes() throws Exception {
+-        FileWriter fw = new FileWriter("C:/recent.txt");
++
++        FileWriter fw = new FileWriter(recentLog);
+         for (String s : filePathList) {
+             fw.write(s + "\n");
++            fw.flush();
+         }
++
+         fw.close();
+ 
+     }
+ 
+     public void loadPathes() throws Exception {
+-        FileReader fr = new FileReader("C:/recent.txt");
++        FileReader fr = new FileReader(recentLog);
+         Scanner iter = new Scanner(fr);
+         while (iter.hasNextLine()) {
+             filePathList.add(iter.nextLine());
+Index: src/sample/ExpSaver.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/ExpSaver.java	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ src/sample/ExpSaver.java	(date 1589392828996)
+@@ -20,7 +20,7 @@
+             Stage parent = (Stage) root.getScene().getWindow();
+             FileChooser fileChooser = new FileChooser();
+             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
+-            FileOutputStream fos = new FileOutputStream(new RecentProject().addFilepath(fileChooser.showSaveDialog(parent).getAbsolutePath()));
++            FileOutputStream fos = new FileOutputStream(fileChooser.showSaveDialog(parent).getAbsolutePath());
+ 
+             ZipOutputStream zipOut = new ZipOutputStream(fos);
+             for (File srcFile : srcFiles) {
+Index: src/sample/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/Main.java	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ src/sample/Main.java	(date 1589392118837)
+@@ -22,6 +22,11 @@
+ 
+ 
+         primaryStage.setOnCloseRequest(event -> {
++            try {
++                new RecentProject().savePathes();
++            } catch (Exception e) {
++
++            }
+             if (ExpLoader.temp == null) {
+                 System.exit(0);
+ 
+Index: src/sample/ExpLoader.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/ExpLoader.java	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ src/sample/ExpLoader.java	(date 1589392988432)
+@@ -75,11 +75,12 @@
+             System.out.println("Deleting Directory. Success = " + temp.delete());*/
+ 
+ 
+-            System.out.println();
++
+             zipInputStream.closeEntry();
+             zipInputStream.close();
+             fis.close();
+         } catch (Exception e) {
++            System.out.println("in loader");
+             System.out.println(e.getMessage());
+         }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ .idea/workspace.xml	(date 1589392544925)
+@@ -1,15 +1,33 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="BranchesTreeState">
++    <expand>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++      <path>
++        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
++        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
++      </path>
++    </expand>
++    <select />
++  </component>
+   <component name="ChangeListManager">
+     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="make next/previous buttons">
+-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Admin.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/sample/RecentProject.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpSaver.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/Main.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/sample/ExpSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ExpSaver.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/sample/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainFrame.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/sample/RecentProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RecentProject.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -466,10 +484,10 @@
+     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+   </component>
+   <component name="WindowStateProjectService">
+-    <state x="395" y="90" key="#Inspections" timestamp="1588202400922">
++    <state x="395" y="90" key="#Inspections" timestamp="1589390938207">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state x="395" y="90" key="#Inspections/0.0.1536.814@0.0.1536.814" timestamp="1588202400922" />
++    <state x="395" y="90" key="#Inspections/0.0.1536.814@0.0.1536.814" timestamp="1589390938207" />
+     <state x="361" y="70" key="#Project_Structure" timestamp="1583526944153">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+@@ -478,10 +496,10 @@
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+     <state x="223" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.814@0.0.1536.814" timestamp="1586959314361" />
+-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1589386160717">
++    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1589390999490">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.814@0.0.1536.814" timestamp="1589386160717" />
++    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.814@0.0.1536.814" timestamp="1589390999490" />
+     <state x="498" y="195" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1584996878755">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+@@ -514,38 +532,38 @@
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+     <state x="483" y="255" key="Github.CreatePullRequestDialog/0.0.1536.814@0.0.1536.814" timestamp="1585348084560" />
+-    <state width="1492" height="198" key="GridCell.Tab.0.bottom" timestamp="1589389829964">
++    <state width="1492" height="236" key="GridCell.Tab.0.bottom" timestamp="1589392317259">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="198" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589389829964" />
+-    <state width="1492" height="198" key="GridCell.Tab.0.center" timestamp="1589389829963">
++    <state width="1492" height="236" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589392317259" />
++    <state width="1492" height="236" key="GridCell.Tab.0.center" timestamp="1589392317259">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="198" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589389829963" />
+-    <state width="1492" height="198" key="GridCell.Tab.0.left" timestamp="1589389829963">
++    <state width="1492" height="236" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589392317259" />
++    <state width="1492" height="236" key="GridCell.Tab.0.left" timestamp="1589392317259">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="198" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589389829963" />
+-    <state width="1492" height="198" key="GridCell.Tab.0.right" timestamp="1589389829963">
++    <state width="1492" height="236" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589392317259" />
++    <state width="1492" height="236" key="GridCell.Tab.0.right" timestamp="1589392317259">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="198" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589389829963" />
+-    <state width="1492" height="239" key="GridCell.Tab.1.bottom" timestamp="1589321216434">
++    <state width="1492" height="236" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589392317259" />
++    <state width="1492" height="236" key="GridCell.Tab.1.bottom" timestamp="1589392317260">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="239" key="GridCell.Tab.1.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
+-    <state width="1492" height="239" key="GridCell.Tab.1.center" timestamp="1589321216434">
++    <state width="1492" height="236" key="GridCell.Tab.1.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589392317260" />
++    <state width="1492" height="236" key="GridCell.Tab.1.center" timestamp="1589392317260">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="239" key="GridCell.Tab.1.center/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
+-    <state width="1492" height="239" key="GridCell.Tab.1.left" timestamp="1589321216434">
++    <state width="1492" height="236" key="GridCell.Tab.1.center/0.0.1536.814@0.0.1536.814" timestamp="1589392317260" />
++    <state width="1492" height="236" key="GridCell.Tab.1.left" timestamp="1589392317260">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="239" key="GridCell.Tab.1.left/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
+-    <state width="1492" height="239" key="GridCell.Tab.1.right" timestamp="1589321216434">
++    <state width="1492" height="236" key="GridCell.Tab.1.left/0.0.1536.814@0.0.1536.814" timestamp="1589392317260" />
++    <state width="1492" height="236" key="GridCell.Tab.1.right" timestamp="1589392317260">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+-    <state width="1492" height="239" key="GridCell.Tab.1.right/0.0.1536.814@0.0.1536.814" timestamp="1589321216434" />
++    <state width="1492" height="236" key="GridCell.Tab.1.right/0.0.1536.814@0.0.1536.814" timestamp="1589392317260" />
+     <state x="564" y="114" key="RollbackChangesDialog" timestamp="1589112000289">
+       <screen x="0" y="0" width="1536" height="814" />
+     </state>
+Index: out/production/controls_learning/sample/MainFrame.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- out/production/controls_learning/sample/MainFrame.fxml	(revision cb1ce8ee6a3028a52e44b08f74000a2300201b8f)
++++ out/production/controls_learning/sample/MainFrame.fxml	(date 1589390110435)
+@@ -1,52 +1,55 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.control.Button?>
+-<?import javafx.scene.control.Label?>
+-<?import javafx.scene.control.Menu?>
+-<?import javafx.scene.control.MenuBar?>
+-<?import javafx.scene.control.MenuItem?>
+-<?import javafx.scene.control.ProgressIndicator?>
+-<?import javafx.scene.control.ScrollPane?>
+-<?import javafx.scene.control.SeparatorMenuItem?>
+-<?import javafx.scene.control.SplitPane?>
+-<?import javafx.scene.control.ToggleButton?>
+-<?import javafx.scene.control.Tooltip?>
++<?import javafx.geometry.*?>
++<?import javafx.scene.control.*?>
+ <?import javafx.scene.image.ImageView?>
+ <?import javafx.scene.input.KeyCodeCombination?>
+-<?import javafx.scene.layout.AnchorPane?>
+-<?import javafx.scene.layout.ColumnConstraints?>
+-<?import javafx.scene.layout.FlowPane?>
+-<?import javafx.scene.layout.GridPane?>
+-<?import javafx.scene.layout.HBox?>
+-<?import javafx.scene.layout.RowConstraints?>
+-<?import javafx.scene.layout.StackPane?>
+-<?import javafx.scene.layout.TilePane?>
++<?import javafx.scene.layout.*?>
+ <?import javafx.scene.text.Font?>
+ <?import org.controlsfx.control.StatusBar?>
+-
+-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="640.0" minWidth="930.0" prefHeight="640.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
++<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="640.0" minWidth="930.0"
++            prefHeight="640.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/11.0.1"
++            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+     <children>
+-        <AnchorPane prefHeight="640.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
++        <AnchorPane prefHeight="640.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
++                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+             <children>
+-                <SplitPane dividerPositions="0.30495689655172414" prefHeight="608.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
++                <SplitPane dividerPositions="0.30495689655172414" prefHeight="608.0" prefWidth="930.0"
++                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
++                           AnchorPane.topAnchor="0.0">
+                     <items>
+-                        <AnchorPane maxWidth="523.0" minWidth="-Infinity" prefHeight="608.0" prefWidth="325.0" SplitPane.resizableWithParent="false">
++                        <AnchorPane maxWidth="523.0" minWidth="-Infinity" prefHeight="608.0" prefWidth="325.0"
++                                    SplitPane.resizableWithParent="false">
+                             <children>
+-                                <ScrollPane fx:id="imageStackStage" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="581.0" prefWidth="350.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
++                                <ScrollPane fx:id="imageStackStage" fitToHeight="true" fitToWidth="true"
++                                            hbarPolicy="NEVER" pannable="true" prefHeight="581.0" prefWidth="350.0"
++                                            AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0"
++                                            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                     <content>
+-                                        <HBox fx:id="pageBox" />
+-                                        <TilePane fx:id="projectImageKeeper" hgap="9.0" onDragDropped="#handleDragDroppedTilePane" onDragOver="#handleDragOverTilePane" prefColumns="0" prefHeight="608.0" prefRows="0" prefWidth="306.0" style="-fx-background-color: #232329;" vgap="9.0">
++                                        <HBox fx:id="pageBox"/>
++                                        <TilePane fx:id="projectImageKeeper" hgap="9.0"
++                                                  onDragDropped="#handleDragDroppedTilePane"
++                                                  onDragOver="#handleDragOverTilePane" prefColumns="0"
++                                                  prefHeight="608.0" prefRows="0" prefWidth="306.0"
++                                                  style="-fx-background-color: #232329;" vgap="9.0">
+                                             <padding>
+-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
++                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                             </padding>
+                                         </TilePane>
+                                     </content>
+                                 </ScrollPane>
+-                                <StatusBar fx:id="status" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="11.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+-                                <StackPane layoutX="135.82594299316406" layoutY="276.07757568359375" AnchorPane.bottomAnchor="276.0000122070312" AnchorPane.leftAnchor="137.60000610351562" AnchorPane.rightAnchor="136.79999389648435" AnchorPane.topAnchor="276.79998779296875">
++                                <StatusBar fx:id="status" layoutY="580.0" maxHeight="-Infinity" maxWidth="-Infinity"
++                                           prefHeight="11.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0"
++                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
++                                <StackPane layoutX="135.82594299316406" layoutY="276.07757568359375"
++                                           AnchorPane.bottomAnchor="276.0000122070312"
++                                           AnchorPane.leftAnchor="137.60000610351562"
++                                           AnchorPane.rightAnchor="136.79999389648435"
++                                           AnchorPane.topAnchor="276.79998779296875">
+                                     <children>
+-                                        <ProgressIndicator fx:id="loadingIndicator" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" mouseTransparent="true" prefHeight="50.0" prefWidth="50.0" />
++                                        <ProgressIndicator fx:id="loadingIndicator" depthTest="DISABLE"
++                                                           maxHeight="-Infinity" maxWidth="-Infinity"
++                                                           mouseTransparent="true" prefHeight="50.0" prefWidth="50.0"/>
+                                     </children>
+                                 </StackPane>
+                             </children>
+@@ -61,49 +64,73 @@
+                                        <children>
+                                           <StackPane fx:id="bigImagePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                               <children>
+-                                                  <ImageView fx:id="bigImageView" cache="true" depthTest="DISABLE" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
++                                                  <ImageView fx:id="bigImageView" cache="true" depthTest="DISABLE"
++                                                             nodeOrientation="INHERIT" pickOnBounds="true"
++                                                             preserveRatio="true" StackPane.alignment="CENTER">
+                                                       <StackPane.margin>
+-                                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
++                                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                                       </StackPane.margin>
+                                                   </ImageView>
+                                               </children>
+                                               <padding>
+-                                                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
++                                                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                                               </padding>
+                                           </StackPane>
+                                        </children>
+                                         <padding>
+-                                            <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
++                                            <Insets bottom="20.0" left="10.0" right="10.0" top="10.0"/>
+                                         </padding>
+                                     </AnchorPane>
+                                  </children>
+                             </AnchorPane>
+-                              <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="200.0" prefWidth="595.0" SplitPane.resizableWithParent="false">
++                              <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
++                                          prefHeight="200.0" prefWidth="595.0" SplitPane.resizableWithParent="false">
+                                   <children>
+-                                      <SplitPane dividerPositions="0.17310789049919484" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
++                                      <SplitPane dividerPositions="0.17310789049919484" maxHeight="-Infinity"
++                                                 maxWidth="1.7976931348623157E308" orientation="VERTICAL"
++                                                 prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0"
++                                                 AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
++                                                 AnchorPane.topAnchor="0.0">
+                                           <items>
+-                                              <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" prefWidth="595.0" SplitPane.resizableWithParent="false">
++                                              <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
++                                                          minHeight="-Infinity" prefHeight="40.0" prefWidth="595.0"
++                                                          SplitPane.resizableWithParent="false">
+                                                   <children>
+-                                                      <GridPane alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
++                                                      <GridPane alignment="CENTER" maxHeight="-Infinity"
++                                                                minHeight="-Infinity" prefHeight="40.0"
++                                                                prefWidth="570.0" AnchorPane.bottomAnchor="0.0"
++                                                                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
++                                                                AnchorPane.topAnchor="0.0">
+                                                           <columnConstraints>
+-                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+-                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+-                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
++                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
++                                                                                 prefWidth="100.0"/>
++                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
++                                                                                 prefWidth="100.0"/>
++                                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
++                                                                                 prefWidth="100.0"/>
+                                                           </columnConstraints>
+                                                           <rowConstraints>
+-                                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++                                                              <RowConstraints minHeight="10.0" prefHeight="30.0"
++                                                                              vgrow="SOMETIMES"/>
+                                                           </rowConstraints>
+                                                           <children>
+-                                                              <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
++                                                              <FlowPane alignment="CENTER" hgap="10.0"
++                                                                        prefHeight="200.0" prefWidth="200.0"
++                                                                        GridPane.columnIndex="1">
+                                                                   <children>
+-                                                                      <Button fx:id="backButton" mnemonicParsing="false" onMouseClicked="#handleBackButton" text="⬅">
++                                                                      <Button fx:id="backButton" mnemonicParsing="false"
++                                                                              onMouseClicked="#handleBackButton"
++                                                                              text="⬅">
+                                                                           <tooltip>
+-                                                                              <Tooltip opacity="0.78" text="Previous" />
++                                                                              <Tooltip opacity="0.78" text="Previous"/>
+                                                                           </tooltip>
+                                                                       </Button>
+-                                                                      <Button fx:id="nextButton" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#handleNextButton" text="➡">
++                                                                      <Button fx:id="nextButton" contentDisplay="TOP"
++                                                                              mnemonicParsing="false"
++                                                                              onMouseClicked="#handleNextButton"
++                                                                              text="➡">
+                                                                           <tooltip>
+-                                                                              <Tooltip opacity="0.78" text="Next" />
++                                                                              <Tooltip opacity="0.78" text="Next"/>
+                                                                           </tooltip>
+                                                                       </Button>
+                                                          </children>
+@@ -115,36 +142,41 @@
+                                                                   <Tooltip opacity="0.78" text="Edit text..." />
+                                                                </tooltip>
+                                                             </ToggleButton>
+-                                                             <Button fx:id="test" mnemonicParsing="false" text="⬅" />
++                                                             <Button fx:id="test" mnemonicParsing="false" text="⬅"/>
+                                                          </children>
+                                                           <opaqueInsets>
+-                                                              <Insets />
++                                                              <Insets/>
+                                                           </opaqueInsets>
+                                                           <GridPane.margin>
+-                                                              <Insets right="10.0" />
++                                                              <Insets right="10.0"/>
+                                                           </GridPane.margin>
+                                                       </FlowPane>
+                                                               <FlowPane alignment="CENTER_LEFT">
+                                                                   <children>
+                                                                       <Label fx:id="imageName" textAlignment="JUSTIFY">
+                                                                           <font>
+-                                                                              <Font size="13.0" />
++                                                                              <Font size="13.0"/>
+                                                                           </font>
+                                                                       </Label>
+                                                                   </children>
+                                                                   <padding>
+-                                                                      <Insets left="10.0" />
++                                                                      <Insets left="10.0"/>
+                                                                   </padding>
+                                                               </FlowPane>
+                                                           </children>
+                                                 </GridPane>
+                                              </children>
+                                           </AnchorPane>
+-                                              <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true" prefHeight="202.0" prefWidth="595.0" vbarPolicy="NEVER">
++                                              <ScrollPane fx:id="queueKeeperStage" fitToHeight="true" fitToWidth="true"
++                                                          prefHeight="202.0" prefWidth="595.0" vbarPolicy="NEVER">
+                                                   <content>
+-                                                      <HBox fx:id="projectImageQueue" alignment="CENTER_LEFT" focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #3a3a3a;">
++                                                      <HBox fx:id="projectImageQueue" alignment="CENTER_LEFT"
++                                                            focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT"
++                                                            prefHeight="100.0" prefWidth="200.0" spacing="20.0"
++                                                            style="-fx-background-color: #3a3a3a;">
+                                                           <padding>
+-                                                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
++                                                              <Insets bottom="10.0" left="10.0" right="10.0"
++                                                                      top="10.0"/>
+                                                           </padding>
+                                                       </HBox>
+                                                   </content>
+@@ -161,48 +193,54 @@
+                 </SplitPane>
+             </children>
+         </AnchorPane>
+-        <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
++        <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
++                 AnchorPane.topAnchor="0.0">
+             <menus>
+                 <Menu fx:id="mainMenu" mnemonicParsing="false" text="File">
+                     <items>
+-                        <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem" text="Open..." />
+-                        <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem" text="Open multi.." />
+-                        <Menu fx:id="recentProjectsMenu" mnemonicParsing="false" text="Recent projects..." />
+-                        <SeparatorMenuItem mnemonicParsing="false" />
++                        <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFiles_menuItem"
++                                  text="Open..."/>
++                        <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles_menuItem"
++                                  text="Open multi.."/>
++                        <Menu fx:id="recentProjectsMenu" mnemonicParsing="false" text="Recent projects..."/>
++                        <SeparatorMenuItem mnemonicParsing="false"/>
+                         <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#saving" text="Save...">
+                             <accelerator>
+-                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
++                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP"
++                                                    shortcut="UP"/>
+                             </accelerator>
+                         </MenuItem>
+-                        <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum" text="Export..." />
++                        <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum" text="Export..."/>
+                         <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#loading" text="Import...">
+                             <accelerator>
+-                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
++                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP"
++                                                    shortcut="UP"/>
+                             </accelerator>
+                         </MenuItem>
+-                        <SeparatorMenuItem mnemonicParsing="false" />
+-                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Exit" />
++                        <SeparatorMenuItem mnemonicParsing="false"/>
++                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Exit"/>
+                     </items>
+                 </Menu>
+                 <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+-                        <MenuItem fx:id="undoMenu" mnemonicParsing="false" onAction="#undoMenuOperation" text="Undo" />
+-                        <MenuItem fx:id="redoMenu" mnemonicParsing="false" onAction="#redoMenuOperation" text="Redo" />
++                        <MenuItem fx:id="undoMenu" mnemonicParsing="false" onAction="#undoMenuOperation" text="Undo"/>
++                        <MenuItem fx:id="redoMenu" mnemonicParsing="false" onAction="#redoMenuOperation" text="Redo"/>
+ 
+-                        <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation" text="Delete" />
++                        <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation"
++                                  text="Delete"/>
+                     </items>
+                 </Menu>
+                 <Menu mnemonicParsing="false" text="Help">
+                     <items>
+-                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" text="About" />
++                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" text="About"/>
+                     </items>
+                 </Menu>
+             </menus>
+             <opaqueInsets>
+-                <Insets />
++                <Insets/>
+             </opaqueInsets>
+             <padding>
+-                <Insets top="2.0" />
++                <Insets top="2.0"/>
+             </padding>
+         </MenuBar>
+     </children>
