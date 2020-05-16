@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -18,6 +19,8 @@ public class FileController {
     TilePane projectImageKeeper;
     Vector<File> image;
     StatusBar status;
+    private HBox projectImageQueue;
+    private Vector<File> queuedImages;
 
     protected FileController(TilePane projectImageKeeper, Vector<File> images, StatusBar status) {
         this.projectImageKeeper = projectImageKeeper;
@@ -30,6 +33,16 @@ public class FileController {
         this.image = img;
     }
 
+    public FileController(HBox projectImageQueue, Vector<File> queuedImages, StatusBar status) {
+
+        this.projectImageQueue = projectImageQueue;
+        this.queuedImages = queuedImages;
+        this.status = status;
+    }
+
+    protected StatusBar saveAlb() {
+        return new ExpSaver().save(projectImageQueue, queuedImages, status);
+    }
 
     protected StatusBar save() {
         return new ExpSaver().save(projectImageKeeper, image, status);
@@ -47,10 +60,7 @@ public class FileController {
         return image;
     }
 
-    protected static void openRecent(String path) {
-        new MainController().imageLoader(new ExpLoader().loadRecent(path));
 
-    }
 
     protected Vector<File> openFromDirectory() {
         //image.clear();

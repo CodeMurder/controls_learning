@@ -223,10 +223,9 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem fx:id="undoMenu" mnemonicParsing="false" onAction="#undoMenuOperation" text="Undo"/>
-                        <MenuItem fx:id="redoMenu" mnemonicParsing="false" onAction="#redoMenuOperation" text="Redo"/>
 
-                        <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation"
+
+                    <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation"
                                   text="Delete"/>
                     </items>
                 </Menu>

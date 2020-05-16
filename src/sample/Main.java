@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 import static sample.ExpLoader.deleteDirectory;
 
 public class Main extends Application {
@@ -25,11 +23,7 @@ public class Main extends Application {
 
         primaryStage.setOnCloseRequest(event -> {
             if (ExpLoader.temp == null) {
-                try {
-                    RecentProject.closeStream();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
                 System.exit(0);
 
             } else {

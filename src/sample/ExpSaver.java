@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -15,13 +17,20 @@ import java.util.zip.ZipOutputStream;
 public class ExpSaver {
 
     protected StatusBar save(TilePane root, Vector<File> images, StatusBar status) {
+        return getStatusBar(images, status, root.getScene());
+    }
+
+    protected StatusBar save(HBox root, Vector<File> images, StatusBar status) {
+        return getStatusBar(images, status, root.getScene());
+    }
+
+    private StatusBar getStatusBar(Vector<File> images, StatusBar status, Scene scene) {
         try {
-            String filepath;
-            Stage parent = (Stage) root.getScene().getWindow();
+
+            Stage parent = (Stage) scene.getWindow();
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
-            filepath = fileChooser.showSaveDialog(parent).getAbsolutePath();
-            FileOutputStream fos = new FileOutputStream(filepath);
+            FileOutputStream fos = new FileOutputStream(fileChooser.showSaveDialog(parent).getAbsolutePath());
             ZipOutputStream zipOut = new ZipOutputStream(fos);
 
             for (File srcFile : images) {
@@ -38,7 +47,7 @@ public class ExpSaver {
                 fis.close();
             }
             zipOut.close();
-            RecentProject.setFilepath(filepath);
+
             fos.close();
             status.setText("Successfully saved)");
         } catch (Exception e) {

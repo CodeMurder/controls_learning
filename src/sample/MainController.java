@@ -104,7 +104,8 @@ public class MainController {
 
     @FXML
     public ScrollPane imageStackStage;
-    ContextMenu contextMenu = new ContextMenu();
+    @FXML
+    ContextMenu contextMenu;
 
     // ContextMenu
     ////
@@ -149,12 +150,6 @@ public class MainController {
         queueKeeperStage.setContent(projectImageQueue);
         queueKeeperStage.fitToWidthProperty();
         projectImageQueue.setAlignment(Pos.CENTER_LEFT);
-        try {
-            new RecentProject().loadPathes();
-            recentProjectsMenu.getItems().addAll(RecentProject.createShortcuts());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
 
     }
 
@@ -179,20 +174,31 @@ public class MainController {
         pageBox.setOnMouseEntered(mouseEvent -> pageBox.setStyle("-fx-border-color:blue"));
         pageBox.setOnMouseExited(mouseEvent -> pageBox.setStyle("-fx-border-color:white"));
         pageBox.setOnMouseClicked(mouseEvent -> {
-            bigImageView.setImage(new Image(file.toURI().toString()));
-            setSizes();
+
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                bigImageView.setImage(new Image(file.toURI().toString()));
+                setSizes();
+                pageBox.setStyle("-fx-background-color: #79f3ff");
                 if (mouseEvent.getClickCount() == 2) {
                     queueLoader(file);
                     queuedImages.add(file);
                 }
             }
+            if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+                contextMenu = new ContextMenu(deleteMenu);
+                contextMenu.show(pageBox, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+                deleteMenu.setOnAction(actionEvent -> updateKeeper(deleteMenuOperation(file)));
+                deleteMenu.setText("Delete");
+            }
             imageName.setText(file.getName());
         });
-
+        pageBox.setOnMouseReleased(mouseEvent -> {
+            pageBox.setStyle("-fx-background-color: none");
+        });
 
         return pageBox;
     }
+
 
     public void setImage(ImageView imageView, File file, int key) {
         try {
@@ -243,12 +249,39 @@ public class MainController {
         queuePageBox.setOnMouseClicked(mouseEvent -> {
             bigImageView.setImage(new Image(file.toURI().toString()));
             setSizes();
+            queuePageBox.setStyle("-fx-background-color: #79f3ff");
             imageName.setText(file.getName());
             position_count = queuedImages.indexOf(file);
+            if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+                contextMenu = new ContextMenu(deleteMenu);
+                contextMenu.show(queuePageBox, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+                deleteMenu.setOnAction(actionEvent -> updateQueue(deleteMenuOperation()));
+                deleteMenu.setText("Delete");
+            }
+        });
+        queuePageBox.setOnMouseReleased(mouseEvent -> {
+            queuePageBox.setStyle("-fx-background-color: none");
         });
 
-
         return queuePageBox;
+    }
+
+    public void updateQueue(Vector<File> loadedImages) {
+        try {
+            projectImageQueue.getChildren().clear();
+            count = 0;
+            do {
+                projectImageQueue.getChildren().add(createQueuePage(loadedImages.elementAt(count)));
+                count++;
+            } while (loadedImages.size() > count);
+            status.setText("Updated. ");
+        } catch (Exception e) {
+            status.setText("All deleted from queue.");
+        }
+    }
+
+    private void updateKeeper(Vector<File> loadedImages) {
+        imageLoader(loadedImages);
     }
 
     public void imageLoader() {
@@ -257,7 +290,7 @@ public class MainController {
                 projectImageKeeper.getChildren().add(createPage(count));
                 count++;
             } while (images.size() > count);
-            status.setText("Images loaded successfully: " + images.size());
+            status.setText("Images: " + images.size());
         } catch (Exception e) {
             status.setText(e.getMessage());
         }
@@ -271,7 +304,7 @@ public class MainController {
                 projectImageKeeper.getChildren().add(createPage(count));
                 count++;
             } while (loadedImages.size() > count);
-            status.setText("Images loaded successfully: " + loadedImages.size());
+            status.setText("Images: " + loadedImages.size());
         } catch (Exception e) {
             status.setText(e.getMessage());
         }
@@ -307,21 +340,29 @@ public class MainController {
 
 
     public void saveAlbum(ActionEvent actionEvent) {
+        try {
+            status = new FileController(projectImageQueue, queuedImages, status).saveAlb();
 
+
+        } catch (Exception e) {
+            status.setText(e.getMessage());
+        }
     }
 
     public void exiting(ActionEvent actionEvent) throws Exception {
-        RecentProject.closeStream();
+
         System.exit(0);
     }
 
-    public void undoMenuOperation(ActionEvent actionEvent) {
+
+    public Vector<File> deleteMenuOperation() {
+        queuedImages.remove(queuedImages.elementAt(position_count));
+        return queuedImages;
     }
 
-    public void redoMenuOperation(ActionEvent actionEvent) {
-    }
-
-    public void deleteMenuOperation(ActionEvent actionEvent) {
+    public Vector<File> deleteMenuOperation(File file) {
+        images.remove(images.elementAt(images.indexOf(file)));
+        return images;
     }
 
     public void handleNextButton(MouseEvent mouseEvent) {
