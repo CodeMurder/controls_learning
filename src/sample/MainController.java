@@ -12,10 +12,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import org.controlsfx.control.StatusBar;
 
 import javax.imageio.ImageIO;
@@ -29,6 +26,12 @@ public class MainController {
 
     @FXML
     public ImageView bigImageView;
+    @FXML
+    public ToggleButton switchBackgroundButton;
+    @FXML
+    public AnchorPane imagePaneWrap;
+    @FXML
+    public GridPane buttonKeeper;
     int count = 0;
     int position_count = 0;
 
@@ -79,12 +82,6 @@ public class MainController {
 
     @FXML
     private MenuItem exitMenu;
-
-    @FXML
-    private MenuItem undoMenu;
-
-    @FXML
-    private MenuItem redoMenu;
 
     @FXML
     private MenuItem deleteMenu;
@@ -140,17 +137,39 @@ public class MainController {
 
     @FXML
     void initialize() {
+        switchBackgroundButton.setGraphic(new ImageView("icons/light.png"));
         imageStackStage.setContent(projectImageKeeper);
         projectImageKeeper.setAlignment(Pos.TOP_LEFT);
         imageStackStage.fitToHeightProperty();
         imageStackStage.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         loadingIndicator.setVisible(false);
-
+        backButton.setGraphic(new ImageView("icons/leftArrow.png"));
+        nextButton.setGraphic(new ImageView("icons/rightArrow.png"));
 
         queueKeeperStage.setContent(projectImageQueue);
         queueKeeperStage.fitToWidthProperty();
         projectImageQueue.setAlignment(Pos.CENTER_LEFT);
-
+        switchBackgroundButton.setOnAction(actionEvent -> {
+            if (switchBackgroundButton.isSelected()) {
+                switchBackgroundButton.setGraphic(new ImageView("icons/dark.png"));
+                imagePaneWrap.setStyle("-fx-background-color: #292929");
+                bigImagePane.setStyle("-fx-background-color: #292929");
+                bigImageView.setStyle("-fx-background-color: #292929");
+                projectImageQueue.setStyle("-fx-background-color: #292929");
+                projectImageKeeper.setStyle("-fx-background-color: #292929");
+                buttonKeeper.setStyle("-fx-background-color: #292929");
+                imageName.setStyle("-fx-text-fill: aliceblue");
+            } else {
+                switchBackgroundButton.setGraphic(new ImageView("icons/light.png"));
+                imagePaneWrap.setStyle("-fx-background-color: none");
+                bigImagePane.setStyle("-fx-background-color: none");
+                bigImageView.setStyle("-fx-background-color: none");
+                projectImageQueue.setStyle("-fx-background-color:none");
+                projectImageKeeper.setStyle("-fx-background-color: none");
+                buttonKeeper.setStyle("-fx-background-color: none");
+                imageName.setStyle("-fx-text-fill: black");
+            }
+        });
     }
 
 
@@ -178,7 +197,7 @@ public class MainController {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 bigImageView.setImage(new Image(file.toURI().toString()));
                 setSizes();
-                pageBox.setStyle("-fx-background-color: #79f3ff");
+
                 if (mouseEvent.getClickCount() == 2) {
                     queueLoader(file);
                     queuedImages.add(file);
@@ -249,7 +268,7 @@ public class MainController {
         queuePageBox.setOnMouseClicked(mouseEvent -> {
             bigImageView.setImage(new Image(file.toURI().toString()));
             setSizes();
-            queuePageBox.setStyle("-fx-background-color: #79f3ff");
+
             imageName.setText(file.getName());
             position_count = queuedImages.indexOf(file);
             if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
@@ -366,28 +385,31 @@ public class MainController {
     }
 
     public void handleNextButton(MouseEvent mouseEvent) {
+        if (queuedImages.size() != 0) {
 
+            if (position_count >= 0 && position_count < queuedImages.size() - 1) {
+                position_count++;
+                bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
 
-        if (position_count >= 0 && position_count < queuedImages.size() - 1) {
-            position_count++;
-            bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
+            } else if (position_count == queuedImages.size() - 1) {
 
-        } else if (position_count == queuedImages.size() - 1) {
+                bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
 
-            bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
-
+            }
         }
     }
 
     public void handleBackButton(MouseEvent mouseEvent) {
-        if (position_count > 0 || position_count == queuedImages.size() - 1) {
-            position_count--;
-            bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
+        if (queuedImages.size() != 0) {
+            if (position_count > 0 || position_count == queuedImages.size() - 1) {
+                position_count--;
+                bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
 
-        } else if (position_count == 0) {
+            } else if (position_count == 0) {
 
-            bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
+                bigImageView.setImage(new Image(queuedImages.elementAt(position_count).toURI().toString()));
 
+            }
         }
     }
 }

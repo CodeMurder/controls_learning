@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import static sample.ExpLoader.deleteDirectory;
@@ -16,7 +17,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainFrame.fxml"));
         primaryStage.setMinHeight(640);
         primaryStage.setMinWidth(930);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Фотоальбом");
+        primaryStage.getIcons().add(new Image("icons/mainFrameIcon.png"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
