@@ -16,15 +16,15 @@ import java.util.zip.ZipOutputStream;
 
 public class ExpSaver {
 
-    protected StatusBar save(TilePane root, Vector<File> images, StatusBar status) {
-        return getStatusBar(images, status, root.getScene(), "*.albprj");
+    protected StatusBar overloadStack(TilePane root, Vector<File> images, StatusBar status) {
+        return save(images, status, root.getScene(), "Album Project", "*.albprj");
     }
 
-    protected StatusBar save(HBox root, Vector<File> images, StatusBar status) {
-        return getStatusBar(images, status, root.getScene(), "*.alb");
+    protected StatusBar overloadStack(HBox root, Vector<File> images, StatusBar status) {
+        return save(images, status, root.getScene(), "Album", "*.alb");
     }
 
-    private StatusBar getStatusBar(Vector<File> images, StatusBar status, Scene scene, String extension) {
+    private StatusBar save(Vector<File> images, StatusBar status, Scene scene, String filter, String extension) {
         try {
 
             Stage parent = (Stage) scene.getWindow();

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 
-public class MainController {
+public class ViewController {
 
     @FXML
     public ImageView bigImageView;
@@ -114,22 +114,22 @@ public class MainController {
     }
 
     @FXML
-    void handleDragDroppedTilePane(DragEvent event) {
+    void handleDragFiles(DragEvent event) {
         images.addAll(event.getDragboard().getFiles());
         imageLoader();
         status.setText("Images loaded successfully: " + images.size());
     }
 
     @FXML
-    void openMultiFiles_menuItem(ActionEvent event) {
-        new FileController(imageStackStage, images).openMultiple();
+    void openMultiFiles(ActionEvent event) {
+        images.addAll(new FileController(imageStackStage, images).openMultiple());
         imageLoader();
         status.setText("Images loaded successfully: " + images.size());
     }
 
     @FXML
-    void openFiles_menuItem(ActionEvent event) {
-        new FileController(imageStackStage, images).openFromDirectory();
+    void openFilesFromDirectory(ActionEvent event) {
+        images.addAll(new FileController(imageStackStage, images).openFromDirectory());
         imageLoader();
 
         status.setText("Images loaded successfully: " + images.size());
@@ -339,7 +339,7 @@ public class MainController {
 
     public void saving(ActionEvent actionEvent) {
         try {
-            status = new FileController(projectImageKeeper, images, status).save();
+            status = new FileController(projectImageKeeper, images, status).savePrj();
 
 
         } catch (Exception e) {

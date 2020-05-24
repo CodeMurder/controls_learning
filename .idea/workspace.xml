@@ -25,7 +25,28 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="omagaaah" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="omagaaah this">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/ExpLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/ExpSaver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03_[Default]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_03__Default_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_05_[Default]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_13_05_2020_21_05__Default_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpSaver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/ExpSaver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/FileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/ImageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/controls_learning/sample/MainFrame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ExpLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ExpLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ExpSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ExpSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ImageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/MainFrame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainFrame.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -278,7 +299,10 @@
       <workItem from="1588183397072" duration="25945000" />
       <workItem from="1589493387312" duration="2792000" />
       <workItem from="1589583346715" duration="4686000" />
-      <workItem from="1589658026888" duration="6431000" />
+      <workItem from="1589658026888" duration="7471000" />
+      <workItem from="1589718079900" duration="4195000" />
+      <workItem from="1589994706909" duration="276000" />
+      <workItem from="1590318842349" duration="4583000" />
     </task>
     <task id="LOCAL-00001" summary="fff">
       <created>1585080831142</created>
@@ -427,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589668154282</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="omagaaah this">
+      <created>1589669310449</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1589669310449</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +551,8 @@
     <MESSAGE value="finish" />
     <MESSAGE value="i think ill gonna mad with this." />
     <MESSAGE value="omagaaah" />
-    <option name="LAST_COMMIT_MESSAGE" value="omagaaah" />
+    <MESSAGE value="omagaaah this" />
+    <option name="LAST_COMMIT_MESSAGE" value="omagaaah this" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -569,46 +601,46 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.814@0.0.1536.814" timestamp="1588184238160" />
-    <state x="473" y="153" key="FileChooserDialogImpl" timestamp="1588183095988">
+    <state x="473" y="153" key="FileChooserDialogImpl" timestamp="1589669269127">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state x="473" y="153" key="FileChooserDialogImpl/0.0.1536.814@0.0.1536.814" timestamp="1588183095988" />
+    <state x="473" y="153" key="FileChooserDialogImpl/0.0.1536.814@0.0.1536.814" timestamp="1589669269127" />
     <state x="483" y="255" key="Github.CreatePullRequestDialog" timestamp="1585348084560">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="483" y="255" key="Github.CreatePullRequestDialog/0.0.1536.814@0.0.1536.814" timestamp="1585348084560" />
-    <state width="1492" height="160" key="GridCell.Tab.0.bottom" timestamp="1589664067566">
+    <state width="1492" height="195" key="GridCell.Tab.0.bottom" timestamp="1590352642149">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="160" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589664067566" />
-    <state width="1492" height="160" key="GridCell.Tab.0.center" timestamp="1589664067566">
+    <state width="1492" height="195" key="GridCell.Tab.0.bottom/0.0.1536.814@0.0.1536.814" timestamp="1590352642149" />
+    <state width="1492" height="195" key="GridCell.Tab.0.center" timestamp="1590352642149">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="160" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1589664067566" />
-    <state width="1492" height="160" key="GridCell.Tab.0.left" timestamp="1589664067566">
+    <state width="1492" height="195" key="GridCell.Tab.0.center/0.0.1536.814@0.0.1536.814" timestamp="1590352642149" />
+    <state width="1492" height="195" key="GridCell.Tab.0.left" timestamp="1590352642149">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="160" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1589664067566" />
-    <state width="1492" height="160" key="GridCell.Tab.0.right" timestamp="1589664067566">
+    <state width="1492" height="195" key="GridCell.Tab.0.left/0.0.1536.814@0.0.1536.814" timestamp="1590352642149" />
+    <state width="1492" height="195" key="GridCell.Tab.0.right" timestamp="1590352642149">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="160" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1589664067566" />
-    <state width="1492" height="196" key="GridCell.Tab.1.bottom" timestamp="1589496194083">
+    <state width="1492" height="195" key="GridCell.Tab.0.right/0.0.1536.814@0.0.1536.814" timestamp="1590352642149" />
+    <state width="1492" height="195" key="GridCell.Tab.1.bottom" timestamp="1590352642150">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="196" key="GridCell.Tab.1.bottom/0.0.1536.814@0.0.1536.814" timestamp="1589496194083" />
-    <state width="1492" height="196" key="GridCell.Tab.1.center" timestamp="1589496194083">
+    <state width="1492" height="195" key="GridCell.Tab.1.bottom/0.0.1536.814@0.0.1536.814" timestamp="1590352642150" />
+    <state width="1492" height="195" key="GridCell.Tab.1.center" timestamp="1590352642150">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="196" key="GridCell.Tab.1.center/0.0.1536.814@0.0.1536.814" timestamp="1589496194083" />
-    <state width="1492" height="196" key="GridCell.Tab.1.left" timestamp="1589496194083">
+    <state width="1492" height="195" key="GridCell.Tab.1.center/0.0.1536.814@0.0.1536.814" timestamp="1590352642150" />
+    <state width="1492" height="195" key="GridCell.Tab.1.left" timestamp="1590352642150">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="196" key="GridCell.Tab.1.left/0.0.1536.814@0.0.1536.814" timestamp="1589496194083" />
-    <state width="1492" height="196" key="GridCell.Tab.1.right" timestamp="1589496194083">
+    <state width="1492" height="195" key="GridCell.Tab.1.left/0.0.1536.814@0.0.1536.814" timestamp="1590352642150" />
+    <state width="1492" height="195" key="GridCell.Tab.1.right" timestamp="1590352642150">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state width="1492" height="196" key="GridCell.Tab.1.right/0.0.1536.814@0.0.1536.814" timestamp="1589496194083" />
+    <state width="1492" height="195" key="GridCell.Tab.1.right/0.0.1536.814@0.0.1536.814" timestamp="1590352642150" />
     <state x="94" y="74" key="MergeDialog" timestamp="1589393129651">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -625,10 +657,10 @@
       <screen x="0" y="0" width="1536" height="814" />
     </state>
     <state x="700" y="252" key="VCS.ChangelistChooser/0.0.1536.814@0.0.1536.814" timestamp="1589668126700" />
-    <state x="361" y="144" key="Vcs.Push.Dialog.v2" timestamp="1589668167175">
+    <state x="361" y="144" key="Vcs.Push.Dialog.v2" timestamp="1589669316747">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
-    <state x="361" y="144" key="Vcs.Push.Dialog.v2/0.0.1536.814@0.0.1536.814" timestamp="1589668167175" />
+    <state x="361" y="144" key="Vcs.Push.Dialog.v2/0.0.1536.814@0.0.1536.814" timestamp="1589669316747" />
     <state x="395" y="159" key="caller.chooser.dialog" timestamp="1587430108976">
       <screen x="0" y="0" width="1536" height="814" />
     </state>
@@ -676,13 +708,5 @@
         <PinnedItemInfo typeName="java.io.FileOutputStream" fieldName="path" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="fis" />
-        <watch expression="entries" />
-        <watch expression="zipFile" />
-        <watch expression="entry" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

@@ -1,12 +1,16 @@
 package sample;
 
 import javafx.scene.layout.TilePane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -121,6 +125,34 @@ public class ExpLoader {
         return images;
     }
 
+    public Vector<File> open(Stage stage, String mode) {
+        Vector<File> imageStack = new Vector<>();
+        switch (mode) {
+            case "multi":
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif"));
+                imageStack.addAll(fileChooser.showOpenMultipleDialog(stage));
+                return imageStack;
+            case "folder":
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                File selectedDirectory = directoryChooser.showDialog(stage);
+
+                if (selectedDirectory != null) {
+                    FilenameFilter filterJpg = (File dir, String name) -> name.toLowerCase().endsWith(".jpg");
+                    FilenameFilter filterPng = (File dir, String name) -> name.toLowerCase().endsWith(".png");
+                    FilenameFilter filterGif = (File dir, String name) -> name.toLowerCase().endsWith(".gif");
+
+                    imageStack.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterJpg))));
+                    imageStack.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterPng))));
+                    imageStack.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterGif))));
+                }
+                return imageStack;
+            default:
+                return null;
+        }
+
+
+    }
 
     public static boolean deleteDirectory(File temp) {
         if (temp.isDirectory()) {

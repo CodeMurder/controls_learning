@@ -3,15 +3,10 @@ package sample;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.StatusBar;
 
 import java.io.File;
-import java.io.FilenameFilter;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Vector;
 
 public class FileController {
@@ -41,11 +36,11 @@ public class FileController {
     }
 
     protected StatusBar saveAlb() {
-        return new ExpSaver().save(projectImageQueue, queuedImages, status);
+        return new ExpSaver().overloadStack(projectImageQueue, queuedImages, status);
     }
 
-    protected StatusBar save() {
-        return new ExpSaver().save(projectImageKeeper, image, status);
+    protected StatusBar savePrj() {
+        return new ExpSaver().overloadStack(projectImageKeeper, image, status);
     }
 
     protected Vector<File> load() {
@@ -54,9 +49,7 @@ public class FileController {
 
     protected Vector<File> openMultiple() {
         Stage parent = (Stage) root.getScene().getWindow();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif"));
-        image.addAll(fileChooser.showOpenMultipleDialog(parent));
+        image = new ExpLoader().open(parent, "multi");
         return image;
     }
 
@@ -65,20 +58,7 @@ public class FileController {
     protected Vector<File> openFromDirectory() {
         //image.clear();
         Stage parent = (Stage) root.getScene().getWindow();
-
-
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        File selectedDirectory = directoryChooser.showDialog(parent);
-
-        if (selectedDirectory != null) {
-            FilenameFilter filterJpg = (File dir, String name) -> name.toLowerCase().endsWith(".jpg");
-            FilenameFilter filterPng = (File dir, String name) -> name.toLowerCase().endsWith(".png");
-            FilenameFilter filterGif = (File dir, String name) -> name.toLowerCase().endsWith(".gif");
-
-            image.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterJpg))));
-            image.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterPng))));
-            image.addAll(Arrays.asList(Objects.requireNonNull(selectedDirectory.listFiles(filterGif))));
-        }
+        image = new ExpLoader().open(parent, "folder");
         return image;
     }
 
