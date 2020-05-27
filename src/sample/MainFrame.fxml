@@ -196,42 +196,44 @@
         <MenuBar prefHeight="35.0" prefWidth="930.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                  AnchorPane.topAnchor="0.0">
             <menus>
-                <Menu fx:id="mainMenu" mnemonicParsing="false" text="File">
+                <Menu fx:id="mainMenu" mnemonicParsing="false" text="Файл">
                     <items>
                         <MenuItem fx:id="OpenFiles_btn" mnemonicParsing="false" onAction="#openFilesFromDirectory"
-                                  text="Open..."/>
+                                  text="Відкрити папку.."/>
                         <MenuItem fx:id="multiOpen_MenuItem" mnemonicParsing="false" onAction="#openMultiFiles"
-                                  text="Open multi.."/>
-                        <Menu fx:id="recentProjectsMenu" mnemonicParsing="false" text="Recent projects..."/>
+                                  text="Відкрити файли.."/>
+
                         <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#saving" text="Save...">
+                        <MenuItem fx:id="expSave" mnemonicParsing="false" onAction="#saving" text="Зберегти проект...">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP"
                                                     shortcut="UP"/>
                             </accelerator>
                         </MenuItem>
-                        <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum" text="Export..."/>
-                        <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#loading" text="Import...">
+                        <MenuItem fx:id="saveAlbumMenu" mnemonicParsing="false" onAction="#saveAlbum"
+                                  text="Експортувати..."/>
+                        <MenuItem fx:id="expLoad" mnemonicParsing="false" onAction="#loading" text="Завантажити...">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP"
                                                     shortcut="UP"/>
                             </accelerator>
                         </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Exit"/>
+                        <MenuItem fx:id="exitMenu" mnemonicParsing="false" onAction="#exiting" text="Вихід"/>
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Редагувати">
                     <items>
 
 
                         <MenuItem fx:id="deleteMenu" mnemonicParsing="false" onAction="#deleteMenuOperation"
-                                  text="Delete"/>
+                                  text="Видалити"/>
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Інформація">
                     <items>
-                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" text="About"/>
+                        <MenuItem fx:id="aboutMenu" mnemonicParsing="false" text="Про програму..."
+                                  onAction="#showInfo"/>
                     </items>
                 </Menu>
             </menus>

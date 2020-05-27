@@ -25,9 +25,9 @@ public class ExpLoader {
 
             Stage parent = (Stage) root.getScene().getWindow();
             FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Album", "*.alb", "*.albprj"));
             ZipFile zipFile = new ZipFile(fileChooser.showOpenDialog(parent).getAbsolutePath());
-            String tempPath = "C:/AlbumTemp";
+            String tempPath = "/AlbumTemp";
             temp = new File(tempPath);
             boolean bool = temp.mkdir();
             if (bool) {
@@ -79,7 +79,7 @@ public class ExpLoader {
 
 
             ZipFile zipFile = new ZipFile(filepath);
-            String tempPath = "C:/AlbumTemp";
+            String tempPath = "/AlbumTemp";
             temp = new File(tempPath);
             boolean bool = temp.mkdir();
             if (bool) {
@@ -130,7 +130,7 @@ public class ExpLoader {
         switch (mode) {
             case "multi":
                 FileChooser fileChooser = new FileChooser();
-                fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif"));
+                fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif", "*.jpeg"));
                 imageStack.addAll(fileChooser.showOpenMultipleDialog(stage));
                 return imageStack;
             case "folder":

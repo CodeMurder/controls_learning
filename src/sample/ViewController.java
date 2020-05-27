@@ -68,8 +68,6 @@ public class ViewController {
     @FXML
     private MenuItem multiOpen_MenuItem;
 
-    @FXML
-    private Menu recentProjectsMenu;
 
     @FXML
     private MenuItem expSave;
@@ -84,7 +82,7 @@ public class ViewController {
     private MenuItem exitMenu;
 
     @FXML
-    private MenuItem deleteMenu;
+    public MenuItem deleteMenu;
 
     @FXML
     private MenuItem aboutMenu;
@@ -145,7 +143,6 @@ public class ViewController {
         loadingIndicator.setVisible(false);
         backButton.setGraphic(new ImageView("icons/leftArrow.png"));
         nextButton.setGraphic(new ImageView("icons/rightArrow.png"));
-
         queueKeeperStage.setContent(projectImageQueue);
         queueKeeperStage.fitToWidthProperty();
         projectImageQueue.setAlignment(Pos.CENTER_LEFT);
@@ -251,14 +248,15 @@ public class ViewController {
         ImageView imageView = new ImageView();
         setImage(imageView, file, 1);
         VBox queuePageBox = new VBox();
+        queuePageBox.setAlignment(Pos.CENTER);
         queuePageBox.getChildren().add(getQueueVBox(imageView, file));
         return queuePageBox;
     }
 
     public HBox getQueueVBox(ImageView imageView, File file) {
         HBox queuePageBox = new HBox();
-        queuePageBox.getChildren().add(imageView);
 
+        queuePageBox.getChildren().add(imageView);
         queuePageBox.setAlignment(Pos.CENTER);
 
         imageView = null;
@@ -275,7 +273,7 @@ public class ViewController {
                 contextMenu = new ContextMenu(deleteMenu);
                 contextMenu.show(queuePageBox, mouseEvent.getScreenX(), mouseEvent.getScreenY());
                 deleteMenu.setOnAction(actionEvent -> updateQueue(deleteMenuOperation()));
-                deleteMenu.setText("Delete");
+                deleteMenu.setText("Видалити");
             }
         });
         queuePageBox.setOnMouseReleased(mouseEvent -> {
@@ -305,6 +303,7 @@ public class ViewController {
 
     public void imageLoader() {
         try {
+
             do {
                 projectImageKeeper.getChildren().add(createPage(count));
                 count++;
@@ -411,5 +410,13 @@ public class ViewController {
 
             }
         }
+    }
+
+    public void showInfo(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Про програму");
+        alert.setHeaderText("Програмна система \"Фотоальбом\".");
+        alert.setContentText("Автор: Скляров Андрій, група ПП-31.");
+        alert.showAndWait();
     }
 }
